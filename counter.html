@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>কাউন্টার ডেস্ক | আলি ইন্টারনেট এন্ড জেরক্স (Ali Internet Counter)</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
+  
+  <link rel="stylesheet" href="css/counter.css">
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖨️</text></svg>">
+</head>
+<body>
+
+  <!-- Top Counter Navigation -->
+  <header class="counter-header">
+    <div class="counter-nav">
+      <div class="counter-brand">
+        <div class="counter-logo">🖨️</div>
+        <div class="counter-title-wrap">
+          <h1 data-ci18n="brandTitle">আলি ইন্টারনেট এন্ড জেরক্স — কাউন্টার ডেস্ক</h1>
+          <p data-ci18n="brandSub">পুঞ্চা (কৃষি ফার্মের বিপরীতে) • সেখ ফারুক আলি</p>
+        </div>
+      </div>
+
+      <div class="counter-controls">
+        <div class="live-pill" id="liveStatusPill">
+          <span class="live-dot"></span>
+          <span>Live Connected</span>
+        </div>
+
+        <button type="button" class="c-btn" id="soundToggleBtn">
+          🔊 সতর্কবার্তা: চালু
+        </button>
+
+        <button type="button" class="c-btn" id="langToggleBtn">
+          Switch to English
+        </button>
+
+        <a href="/" target="_blank" rel="noopener" class="c-btn">
+          🌐 মূল ওয়েবসাইট
+        </a>
+      </div>
+    </div>
+  </header>
+
+  <main class="counter-main">
+    <!-- Metrics Ribbon -->
+    <section class="metrics-grid">
+      <div class="metric-card metric-pending">
+        <div class="metric-icon-box">⏳</div>
+        <div class="metric-data">
+          <h3 id="statPending">0</h3>
+          <p data-ci18n="statPendingLbl">অপেক্ষমান অর্ডার</p>
+        </div>
+      </div>
+
+      <div class="metric-card metric-ready">
+        <div class="metric-icon-box">🟢</div>
+        <div class="metric-data">
+          <h3 id="statReady">0</h3>
+          <p data-ci18n="statReadyLbl">ডেলিভারির জন্য রেডি</p>
+        </div>
+      </div>
+
+      <div class="metric-card metric-total">
+        <div class="metric-icon-box">📄</div>
+        <div class="metric-data">
+          <h3 id="statToday">0</h3>
+          <p data-ci18n="statTodayLbl">আজকের মোট অর্ডার</p>
+        </div>
+      </div>
+
+      <div class="metric-card metric-revenue">
+        <div class="metric-icon-box">💰</div>
+        <div class="metric-data">
+          <h3 id="statRevenue">₹0</h3>
+          <p data-ci18n="statRevenueLbl">আজকের আনুমানিক আয়</p>
+        </div>
+      </div>
+    </section>
+
+    <!-- Orders Queue & Tabs -->
+    <div class="queue-toolbar">
+      <div class="status-tabs">
+        <button type="button" class="tab-btn active" data-status="all">
+          <span data-ci18n="tabAll">সকল অর্ডার</span>
+          <span class="tab-badge" id="badgeAll">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-status="pending">
+          <span data-ci18n="tabPending">অপেক্ষমান</span>
+          <span class="tab-badge" id="badgePending">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-status="ready">
+          <span data-ci18n="tabReady">প্রিন্ট রেডি</span>
+          <span class="tab-badge" id="badgeReady">0</span>
+        </button>
+        <button type="button" class="tab-btn" data-status="completed">
+          <span data-ci18n="tabCompleted">সম্পন্ন</span>
+        </button>
+      </div>
+    </div>
+
+    <!-- Live Orders Grid -->
+    <section class="orders-grid" id="ordersGrid">
+      <!-- Populated dynamically by counter.js -->
+    </section>
+  </main>
+
+  <script src="js/counter.js"></script>
+</body>
+</html>

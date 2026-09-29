@@ -1,0 +1,536 @@
+/* ==========================================================================
+   Ali Internet & Xerox - Faruk's Counter Dashboard Styles
+   High-Contrast, Realtime Workstation Interface for Shop PC & Tablet
+   ========================================================================== */
+
+:root {
+  --c-bg: #090d16;
+  --c-surface: #131c2e;
+  --c-card: #1a263e;
+  --c-card-hover: #223252;
+  --c-border: rgba(255, 255, 255, 0.09);
+  
+  --c-text-main: #f8fafc;
+  --c-text-muted: #94a3b8;
+
+  --c-primary: #38bdf8;
+  --c-success: #10b981;
+  --c-warning: #f59e0b;
+  --c-danger: #f43f5e;
+  --c-purple: #a855f7;
+
+  --c-font: 'Outfit', 'Noto Sans Bengali', system-ui, sans-serif;
+}
+
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  background-color: var(--c-bg);
+  color: var(--c-text-main);
+  font-family: var(--c-font);
+  min-height: 100vh;
+  padding-bottom: 2rem;
+  line-height: 1.5;
+}
+
+/* Dashboard Header */
+.counter-header {
+  background: var(--c-surface);
+  border-bottom: 1px solid var(--c-border);
+  padding: 1rem 1.5rem;
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.counter-nav {
+  max-width: 1400px;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.counter-brand {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.counter-logo {
+  width: 42px;
+  height: 42px;
+  border-radius: 10px;
+  background: linear-gradient(135deg, #0284c7 0%, #10b981 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.35rem;
+}
+
+.counter-title-wrap h1 {
+  font-size: 1.15rem;
+  font-weight: 800;
+  line-height: 1.2;
+}
+
+.counter-title-wrap p {
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+}
+
+.counter-controls {
+  display: flex;
+  align-items: center;
+  gap: 0.85rem;
+}
+
+.live-pill {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.3rem 0.8rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+  background: rgba(16, 185, 129, 0.15);
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  color: #34d399;
+}
+
+.live-dot {
+  width: 8px;
+  height: 8px;
+  border-radius: 50%;
+  background-color: currentColor;
+  animation: pulseDot 2s infinite;
+}
+
+@keyframes pulseDot {
+  0% { transform: scale(0.9); opacity: 0.8; }
+  50% { transform: scale(1.3); opacity: 1; }
+  100% { transform: scale(0.9); opacity: 0.8; }
+}
+
+.c-btn {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  padding: 0.45rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  cursor: pointer;
+  border: 1px solid var(--c-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--c-text-main);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+.c-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  border-color: var(--c-primary);
+}
+
+.c-btn.active {
+  background: var(--c-primary);
+  color: #031427;
+  border-color: var(--c-primary);
+}
+
+/* Metrics Ribbon */
+.counter-main {
+  max-width: 1400px;
+  margin: 1.5rem auto 0;
+  padding: 0 1.25rem;
+}
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1rem;
+  margin-bottom: 1.75rem;
+}
+
+.metric-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 14px;
+  padding: 1.25rem;
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.metric-icon-box {
+  width: 48px;
+  height: 48px;
+  border-radius: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.4rem;
+}
+
+.metric-pending .metric-icon-box {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+}
+
+.metric-ready .metric-icon-box {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+}
+
+.metric-total .metric-icon-box {
+  background: rgba(56, 189, 248, 0.15);
+  color: #38bdf8;
+}
+
+.metric-revenue .metric-icon-box {
+  background: rgba(168, 85, 247, 0.15);
+  color: #c084fc;
+}
+
+.metric-data h3 {
+  font-size: 1.6rem;
+  font-weight: 800;
+  line-height: 1.1;
+}
+
+.metric-data p {
+  font-size: 0.8rem;
+  color: var(--c-text-muted);
+}
+
+/* Toolbar & Filters */
+.queue-toolbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1rem;
+  margin-bottom: 1.25rem;
+}
+
+.status-tabs {
+  display: flex;
+  gap: 0.5rem;
+  flex-wrap: wrap;
+}
+
+.tab-btn {
+  padding: 0.5rem 1.1rem;
+  border-radius: 9999px;
+  border: 1px solid var(--c-border);
+  background: var(--c-surface);
+  color: var(--c-text-muted);
+  font-size: 0.85rem;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  align-items: center;
+  gap: 0.4rem;
+}
+
+.tab-btn:hover {
+  color: var(--c-text-main);
+}
+
+.tab-btn.active {
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: white;
+  border-color: #38bdf8;
+}
+
+.tab-badge {
+  background: rgba(0, 0, 0, 0.35);
+  padding: 0.1rem 0.5rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+}
+
+/* Orders Cards Grid */
+.orders-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: 1.25rem;
+}
+
+.order-card {
+  background: var(--c-surface);
+  border: 1px solid var(--c-border);
+  border-radius: 16px;
+  padding: 1.4rem;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.25s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.order-card:hover {
+  border-color: rgba(56, 189, 248, 0.4);
+  transform: translateY(-2px);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
+}
+
+.order-card.status-pending {
+  border-left: 4px solid var(--c-warning);
+}
+
+.order-card.status-ready {
+  border-left: 4px solid var(--c-success);
+}
+
+.order-card.status-completed {
+  border-left: 4px solid var(--c-text-muted);
+  opacity: 0.75;
+}
+
+.order-card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 0.85rem;
+}
+
+.order-token {
+  font-size: 1.4rem;
+  font-weight: 800;
+  color: #38bdf8;
+  letter-spacing: -0.02em;
+}
+
+.order-time {
+  font-size: 0.75rem;
+  color: var(--c-text-muted);
+}
+
+.order-status-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  padding: 0.2rem 0.65rem;
+  border-radius: 9999px;
+  font-size: 0.75rem;
+  font-weight: 700;
+}
+
+.badge-pending {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+.badge-ready {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.badge-completed {
+  background: rgba(148, 163, 184, 0.15);
+  color: #94a3b8;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+}
+
+.order-customer-box {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid var(--c-border);
+  border-radius: 10px;
+  padding: 0.75rem 0.9rem;
+  margin-bottom: 1rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.customer-info h4 {
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--c-text-main);
+}
+
+.customer-info p {
+  font-size: 0.8rem;
+  color: var(--c-text-muted);
+}
+
+.customer-actions {
+  display: flex;
+  gap: 0.4rem;
+}
+
+.c-icon-btn {
+  width: 34px;
+  height: 34px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1rem;
+  text-decoration: none;
+  border: 1px solid var(--c-border);
+  background: rgba(255, 255, 255, 0.05);
+  color: var(--c-text-main);
+  transition: all 0.2s ease;
+}
+
+.c-icon-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  transform: scale(1.05);
+}
+
+.btn-whatsapp {
+  background: rgba(37, 211, 102, 0.15);
+  border-color: rgba(37, 211, 102, 0.3);
+  color: #4ade80;
+}
+
+.order-specs-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 1.1rem;
+  font-size: 0.85rem;
+}
+
+.spec-row {
+  display: flex;
+  justify-content: space-between;
+  color: var(--c-text-muted);
+  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  padding-bottom: 0.3rem;
+}
+
+.spec-val {
+  font-weight: 600;
+  color: var(--c-text-main);
+}
+
+.order-bill-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 0.75rem 0;
+  border-top: 1px solid var(--c-border);
+  margin-bottom: 1rem;
+}
+
+.order-amount {
+  font-size: 1.3rem;
+  font-weight: 800;
+  color: #38bdf8;
+}
+
+.payment-tag {
+  font-size: 0.75rem;
+  font-weight: 700;
+  padding: 0.2rem 0.6rem;
+  border-radius: 6px;
+}
+
+.pay-upi {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+}
+
+.pay-cash {
+  background: rgba(245, 158, 11, 0.15);
+  color: #fbbf24;
+  border: 1px solid rgba(245, 158, 11, 0.3);
+}
+
+/* File Print / Download Button */
+.order-file-action {
+  margin-bottom: 1rem;
+}
+
+.btn-print-file {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
+  color: white;
+  padding: 0.75rem;
+  border-radius: 10px;
+  font-size: 0.92rem;
+  font-weight: 700;
+  text-decoration: none;
+  box-shadow: 0 4px 14px rgba(2, 132, 199, 0.3);
+  transition: all 0.2s ease;
+}
+
+.btn-print-file:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(2, 132, 199, 0.45);
+}
+
+/* Card Bottom Operations */
+.order-actions-bar {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 0.5rem;
+}
+
+.btn-status-ready {
+  background: rgba(16, 185, 129, 0.15);
+  color: #34d399;
+  border: 1px solid rgba(16, 185, 129, 0.3);
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-status-ready:hover {
+  background: var(--c-success);
+  color: white;
+}
+
+.btn-status-complete {
+  background: rgba(148, 163, 184, 0.15);
+  color: #e2e8f0;
+  border: 1px solid rgba(148, 163, 184, 0.3);
+  padding: 0.6rem;
+  border-radius: 8px;
+  font-weight: 700;
+  font-size: 0.82rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.btn-status-complete:hover {
+  background: #475569;
+}
+
+/* Empty Queue State */
+.empty-queue {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 4rem 1.5rem;
+  background: var(--c-surface);
+  border: 1px dashed var(--c-border);
+  border-radius: 16px;
+  color: var(--c-text-muted);
+}
+
+.empty-queue-icon {
+  font-size: 3rem;
+  margin-bottom: 0.75rem;
+}

@@ -1,0 +1,596 @@
+<!DOCTYPE html>
+<html lang="bn">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <!-- SEO Meta Tags -->
+  <title>Ali Internet & Xerox (আলি ইন্টারনেট এন্ড জেরক্স) | Puncha, Purulia</title>
+  <meta name="description"
+    content="আলি ইন্টারনেট এন্ড জেরক্স (Ali Internet & Xerox) - পুঞ্চা কৃষি ফার্মের বিপরীতে সেখ ফারুক আলির বিশ্বস্ত ডিজিটাল সেবা কেন্দ্র। ডিজিটাল রেশন কার্ড, ড্রাইভিং লাইসেন্স, জমির পর্চা, বাইক ইন্স্যুরেন্স, প্যান কার্ড ও দ্রুত জেরক্স।">
+  <meta name="keywords"
+    content="Ali Internet Puncha, Xerox shop Puncha, Cyber cafe Puncha Purulia, Driving license apply Puncha, Ration card Puncha, Jamir Porcha Purulia, Bike insurance Puncha, Sekh Faruk Ali">
+  <meta name="author" content="Sekh Faruk Ali">
+
+  <!-- Open Graph / Social Sharing -->
+  <meta property="og:title" content="Ali Internet & Xerox (আলি ইন্টারনেট এন্ড জেরক্স) - Puncha">
+  <meta property="og:description"
+    content="পুঞ্চার বিশ্বস্ত অনলাইন সেবা, জমির পর্চা, ডিজিটাল রেশন কার্ড, ড্রাইভিং লাইসেন্স ও জেরক্স সেন্টার।">
+  <meta property="og:image" content="assets/shop-front.jpeg">
+  <meta property="og:type" content="business.business">
+
+  <!-- Google Fonts: Outfit (English) + Noto Sans Bengali (Bengali) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link
+    href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;500;600;700;800&family=Outfit:wght@400;500;600;700;800&display=swap"
+    rel="stylesheet">
+
+  <!-- Stylesheet -->
+  <link rel="stylesheet" href="css/style.css">
+  <link rel="icon"
+    href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖨️</text></svg>">
+</head>
+
+<body class="lang-bn">
+
+  <!-- Ambient Light Accents -->
+  <div class="ambient-bg" aria-hidden="true">
+    <div class="ambient-blob-1"></div>
+    <div class="ambient-blob-2"></div>
+  </div>
+
+  <!-- Top Realtime Notification / Open-Close Bar -->
+  <div class="top-notice-bar" id="topNoticeBar">
+    <div class="container top-bar-content">
+      <div class="shop-status-pill open" id="shopStatusBadge">
+        <span class="pulse-dot"></span>
+        <span id="shopStatusText">এখন খোলা আছে (সকাল ৮টা – রাত ৯টা)</span>
+      </div>
+
+      <div class="top-actions">
+        <span style="font-size: 0.85rem; color: var(--text-secondary);">📍 পুঞ্চা (কৃষি ফার্মের বিপরীতে)</span>
+        <button id="langToggleBtn" class="lang-switch-btn" type="button" aria-label="Toggle Language">
+          <span>🌐</span> <strong id="langLabel">Switch to English</strong>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Main Navigation Header -->
+  <header class="site-header" id="siteHeader">
+    <div class="container nav-container">
+      <a href="#home" class="brand-wrapper" id="brandLink">
+        <div class="brand-logo-icon">🖨️</div>
+        <div class="brand-text">
+          <h1>আলি ইন্টারনেট এন্ড জেরক্স</h1>
+          <p>Ali Internet & Xerox • Puncha, Purulia</p>
+        </div>
+      </a>
+
+      <nav aria-label="Main Navigation">
+        <ul class="nav-links">
+          <li><a href="#home" data-i18n="navHome">হোম</a></li>
+          <li><a href="#calculator" data-i18n="navCalculator">প্রিন্ট অর্ডার</a></li>
+          <li><a href="#documents" data-i18n="navDocs">ডকুমেন্ট গাইড</a></li>
+          <li><a href="#services" data-i18n="navServices">সকল সার্ভিস</a></li>
+          <li><a href="#location" data-i18n="navLocation">ঠিকানা ও ম্যাপ</a></li>
+          <li><a href="/counter" target="_blank" style="color: #38bdf8; font-weight: 700;">💻 কাউন্টার ডেস্ক</a></li>
+        </ul>
+      </nav>
+
+      <a href="https://wa.me/919734573323?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A7%81%E0%A6%95%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BF%20%E0%A6%93%E0%A6%AF%E0%A6%BC%E0%A7%87%E0%A6%AC%E0%A6%B8%E0%A6%BE%E0%A6%87%E0%A6%9F%20%E0%A6%A5%E0%A7%87%E0%A6%95%E0%A7%87%20%E0%A6%AF%E0%A7%8B%E0%A6%97%E0%A6%BE%E0%A6%AF%E0%A7%8B%E0%A6%97%20%E0%A6%95%E0%A6%B0%E0%A6%9B%E0%A6%BF%E0%A5%A4"
+        target="_blank" rel="noopener" class="header-cta-btn" id="headerWhatsAppBtn">
+        <span>💬</span> <span>হোয়াটসঅ্যাপ মেসেজ</span>
+      </a>
+    </div>
+  </header>
+
+  <main>
+    <!-- Hero Section -->
+    <section class="hero-section" id="home">
+      <div class="container hero-grid">
+        <div class="hero-content">
+          <div class="hero-badge">
+            <span>✨</span> <span data-i18n="heroBadge">⚡ পুঞ্চার বিশ্বস্ত অনলাইন ও ডিজিটাল সেবা কেন্দ্র</span>
+          </div>
+
+          <h2 class="hero-title">
+            <span data-i18n="heroTitle1">আপনার এলাকার বিশ্বস্ত</span> <br>
+            <span class="gradient-text" data-i18n="heroTitle2">ডিজিটাল সরকারি সেবা</span> <br>
+            <span data-i18n="heroTitle3">ও দ্রুত প্রিন্টিং ও জেরক্স</span>
+          </h2>
+
+          <p class="hero-subtitle" data-i18n="heroSubtitle">
+            কৃষি ফার্মের বিপরীতে সেখ ফারুক আলির পরিচালনায়। ডিজিটাল রেশন কার্ড, ড্রাইভিং লাইসেন্স, জমির পর্চা, বাইক ও
+            গাড়ির ইন্স্যুরেন্স, তাৎক্ষণিক প্যান কার্ড এবং উন্নত মানের জেরক্স।
+          </p>
+
+          <div class="hero-actions">
+            <a href="#calculator" class="btn btn-primary" id="heroPrintCta">
+              <span>📄</span> <span data-i18n="btnSendWhatsApp">হোয়াটসঅ্যাপে প্রিন্ট পাঠান</span>
+            </a>
+            <a href="#documents" class="btn btn-secondary" id="heroDocsCta">
+              <span>📋</span> <span data-i18n="btnCheckDocs">প্রয়োজনীয় কাগজপত্র দেখুন</span>
+            </a>
+          </div>
+
+          <div class="hero-trust-badges">
+            <div class="trust-item">
+              <span class="icon">⚡</span>
+              <span data-i18n="trustXerox">দ্রুত জেরক্স ও লেমিনেশন</span>
+            </div>
+            <div class="trust-item">
+              <span class="icon">🛡️</span>
+              <span data-i18n="trustInsurance">আলি ইন্স্যুরেন্স পয়েন্ট</span>
+            </div>
+            <div class="trust-item">
+              <span class="icon">🏛️</span>
+              <span data-i18n="trustGovt">সকল সরকারি পোর্টাল আবেদন</span>
+            </div>
+            <div class="trust-item">
+              <span class="icon">📍</span>
+              <span data-i18n="trustLocal">পুঞ্চা কৃষি ফার্মের বিপরীতে</span>
+            </div>
+          </div>
+        </div>
+
+        <!-- Shop Visual Preview Card (Real Shop Photo) -->
+        <div class="hero-card-preview">
+          <div class="shop-photo-card" id="shopCard">
+            <div class="shop-img-wrapper">
+              <img src="assets/shop-front.jpeg" alt="Ali Internet & Xerox Puncha Shop Front" loading="eager"
+                id="shopFrontImg">
+              <div class="shop-img-overlay">
+                <span class="shop-img-badge">
+                  <span>📍</span> <span>Puncha, Purulia (Opp. Krishi Farm)</span>
+                </span>
+              </div>
+            </div>
+
+            <div class="shop-card-body">
+              <div class="shop-meta-row">
+                <span class="shop-owner-tag">
+                  👤 <span data-i18n="shopOwnerLabel">সেখ ফারুক আলি (প্রোপ্রাইটার)</span>
+                </span>
+                <span style="font-size: 0.82rem; color: #34d399; font-weight: 700;">PIN: 723151</span>
+              </div>
+              <p class="shop-address-text">
+                পুঞ্চা (কৃষি ফার্মের বিপরীতে), পুঞ্চা, পুরুলিয়া, পশ্চিমবঙ্গ — ৭২৩১৫১
+              </p>
+
+              <div class="shop-quick-actions">
+                <a href="tel:9734573323" class="quick-action-link action-call" id="shopCardCallBtn">
+                  <span>📞</span> <span data-i18n="callDirect">ফারুক কে ফোন করুন</span>
+                </a>
+                <a href="https://www.google.com/maps/dir/?api=1&destination=23.165622,86.655718" target="_blank"
+                  rel="noopener" class="quick-action-link action-directions" id="shopCardMapBtn">
+                  <span>🧭</span> <span data-i18n="getDirections">দোকানের রাস্তা / ম্যাপ</span>
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 1: Skip the Line - Cloud Print Desk & UPI Order -->
+    <section class="calculator-section" id="calculator">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="calcTag">লাইনে দাঁড়াতে হবে না</span>
+          <h2 class="section-title" data-i18n="calcTitle">ওয়েব প্রিন্ট ডেস্ক ও ফাইল আপলোড</h2>
+          <p class="section-desc" data-i18n="calcDesc">
+            ঘরে বসেই ফাইল আপলোড করে প্রিন্ট অর্ডার জমা দিন। ফারুকের প্রিন্টারে সরাসরি অর্ডার পৌঁছে যাবে এবং আপনার জন্য ডিজিটাল টোকেন নম্বর ইস্যু হবে।
+          </p>
+        </div>
+
+        <div class="calculator-card" id="calcCard">
+          <form id="printOrderForm" onsubmit="return false;">
+            <!-- 1. File Upload Dropzone -->
+            <div class="upload-dropzone" id="uploadDropzone">
+              <span class="dropzone-icon">📁</span>
+              <div class="dropzone-title">এখানে ফাইল ড্রপ করুন অথবা সিলেক্ট করুন</div>
+              <div class="dropzone-hint">PDF, Word, JPG, PNG, WEBP ফাইল সমর্থিত (সর্বোচ্চ ২৫ MB)</div>
+              <input type="file" id="printFileInput" accept=".pdf,.doc,.docx,.jpg,.jpeg,.png,.webp" style="display: none;">
+            </div>
+
+            <!-- File Selected Preview Box -->
+            <div class="file-selected-box" id="fileSelectedBox">
+              <div class="file-info-group">
+                <span class="file-type-icon" id="fileTypeIcon">📄</span>
+                <div class="file-text-details">
+                  <h4 id="selectedFileName">document.pdf</h4>
+                  <p id="selectedFileSize">1.2 MB</p>
+                </div>
+              </div>
+              <button type="button" class="btn-remove-file" id="btnRemoveFile">রিমুভ করুন ✕</button>
+            </div>
+
+            <!-- 2. Primary Print Options -->
+            <div class="calc-options-grid">
+              <div class="calc-field-group">
+                <label for="printServiceSelect" data-i18n="calcSelectLabel">কাজের ধরন বেছে নিন</label>
+                <select id="printServiceSelect" class="calc-select" aria-label="Select print service">
+                  <!-- Dynamically loaded from data.js -->
+                </select>
+              </div>
+
+              <div class="calc-field-group">
+                <label for="printCopiesInput" data-i18n="calcQtyLabel">কপি / পৃষ্ঠা সংখ্যা</label>
+                <div class="counter-stepper">
+                  <button type="button" class="stepper-btn" id="copiesMinusBtn" aria-label="Decrease quantity">−</button>
+                  <input type="number" id="printCopiesInput" class="stepper-val calc-input" value="1" min="1" max="1000" aria-label="Copies count">
+                  <button type="button" class="stepper-btn" id="copiesPlusBtn" aria-label="Increase quantity">+</button>
+                </div>
+              </div>
+            </div>
+
+            <!-- 3. Secondary Print Config (Paper size, sides, finishing) -->
+            <div class="calc-config-row">
+              <div class="calc-field-group">
+                <label>কাগজের মাপ (Paper Size)</label>
+                <div class="pill-toggle-group" id="paperSizeToggle">
+                  <button type="button" class="pill-toggle-btn active" data-size="A4">A4 (Standard)</button>
+                  <button type="button" class="pill-toggle-btn" data-size="Legal">Legal (দলিল/স্ট্যাম্প)</button>
+                </div>
+              </div>
+
+              <div class="calc-field-group">
+                <label>প্রিন্ট সাইড (Print Sides)</label>
+                <div class="pill-toggle-group" id="printSidesToggle">
+                  <button type="button" class="pill-toggle-btn active" data-sides="single">এক পিঠ (Single)</button>
+                  <button type="button" class="pill-toggle-btn" data-sides="double">উভয় পিঠ (Both)</button>
+                </div>
+              </div>
+
+              <div class="calc-field-group">
+                <label>অতিরিক্ত ফিনিশিং (Optional)</label>
+                <div class="checkbox-group">
+                  <label class="custom-checkbox-label">
+                    <input type="checkbox" id="chkLamination">
+                    <span>লেমিনেশন (+₹২০/ডকুমেন্ট)</span>
+                  </label>
+                  <label class="custom-checkbox-label">
+                    <input type="checkbox" id="chkSpiral">
+                    <span>স্পাইরাল বাইন্ডিং (+₹৩৫/বই)</span>
+                  </label>
+                </div>
+              </div>
+            </div>
+
+            <!-- 4. Customer Info Fields -->
+            <div class="customer-fields-grid">
+              <div class="calc-field-group">
+                <label for="custNameInput">আপনার নাম (Customer Name) *</label>
+                <input type="text" id="custNameInput" class="calc-input" placeholder="যেমন: রহিম আনসারী" required>
+              </div>
+
+              <div class="calc-field-group">
+                <label for="custPhoneInput">মোবাইল / হোয়াটসঅ্যাপ নম্বর *</label>
+                <input type="tel" id="custPhoneInput" class="calc-input" placeholder="১০ সংখ্যার মোবাইল নম্বর" maxlength="10" required>
+              </div>
+            </div>
+
+            <!-- 5. Payment Method Selector -->
+            <div class="payment-selector-wrap">
+              <label style="display:block; font-size: 0.88rem; font-weight:600; color:var(--text-secondary); margin-bottom: 0.5rem;">মূল্য পরিশোধের পদ্ধতি বেছে নিন</label>
+              
+              <div class="payment-tabs">
+                <button type="button" class="pay-tab-btn active" id="payTabUpi" data-pay="upi">
+                  <span>⚡</span> <span>ইউপিআই (UPI QR / Instant Pay)</span>
+                </button>
+                <button type="button" class="pay-tab-btn" id="payTabCash" data-pay="cash">
+                  <span>💵</span> <span>দোকানে এসে নগদ প্রদান (Cash)</span>
+                </button>
+              </div>
+
+              <!-- UPI Dynamic QR Container -->
+              <div class="upi-details-card active" id="upiDetailsCard">
+                <p style="font-size: 0.85rem; color: #38bdf8; font-weight: 600;">
+                  Google Pay, PhonePe, Paytm বা যেকোনো UPI অ্যাপ দিয়ে নিচের QR স্ক্যান করুন:
+                </p>
+                <img src="" alt="Ali Internet UPI QR Code" class="upi-qr-image" id="dynamicUpiQr">
+                <div>
+                  <a href="#" class="upi-intent-link" id="upiIntentBtn">
+                    <span>📲</span> <span>মোবাইল UPI অ্যাপ দিয়ে পে করুন</span>
+                  </a>
+                </div>
+                <p style="font-size: 0.75rem; color: var(--text-muted); margin-top: 0.5rem;">
+                  UPI ID: <strong>9734573323@ybl</strong> (সেখ ফারুক আলি)
+                </p>
+              </div>
+            </div>
+
+            <!-- Bill Summary Box -->
+            <div class="calc-summary-box">
+              <div class="calc-price-wrap">
+                <span class="calc-price-label" data-i18n="calcPriceEstLabel">মোট প্রদেয় বিল:</span>
+                <span class="calc-price-amount" id="estPriceAmount">₹2</span>
+              </div>
+              <div class="calc-note" data-i18n="calcDisclaimer">
+                *ফাইল ও কনফিগারেশন অনুযায়ী স্বয়ংক্রিয়ভাবে হিসাবকৃত মূল্য।
+              </div>
+            </div>
+
+            <!-- Action Buttons Grid -->
+            <div class="pay-actions-grid">
+              <button type="button" class="btn btn-primary" id="btnSubmitOrder" style="padding: 1rem; font-size: 1.05rem;">
+                <span>🚀</span> <span>কাউন্টারে অর্ডার ও ফাইল পাঠান</span>
+              </button>
+              <a href="#" target="_blank" rel="noopener" class="btn btn-secondary" id="sendPrintWhatsAppBtn" style="padding: 1rem; font-size: 0.95rem;">
+                <span>💬</span> <span>হোয়াটসঅ্যাপ ব্যাকআপ</span>
+              </a>
+            </div>
+          </form>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 2: Interactive Document Requirements Guide (ডকুমেন্ট গাইড) -->
+    <section class="doc-guide-section" id="documents">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="docGuideTag">ডকুমেন্ট চেকলিস্ট</span>
+          <h2 class="section-title" data-i18n="docGuideTitle">আসার আগে প্রয়োজনীয় কাগজপত্র দেখে নিন</h2>
+          <p class="section-desc" data-i18n="docGuideDesc">
+            কোনো কাগজপত্র ফেলে আসবেন না! আপনার প্রয়োজনীয় কাজের জন্য সাথে কী কী আসল ও জেরক্স আনতে হবে নিচে দেখে নিন।
+          </p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="search-input-wrap">
+          <span class="search-icon">🔍</span>
+          <input type="text" id="docSearchInput" class="search-input"
+            placeholder="সার্ভিস খুঁজুন (যেমন: রেশন, ড্রাইভিং লাইসেন্স, পর্চা, প্যান)..."
+            aria-label="Search required documents">
+        </div>
+
+        <!-- Filter Buttons -->
+        <div class="filter-bar" id="docFilterBar">
+          <button type="button" class="filter-btn active" data-filter="all" data-i18n="filterAll">সকল সেবা</button>
+          <button type="button" class="filter-btn" data-filter="citizen" data-i18n="filterCitizen">নাগরিক সেবা
+            (রেশন/প্যান/ভোটার)</button>
+          <button type="button" class="filter-btn" data-filter="transport" data-i18n="filterTransport">গাড়ির কাজ ও
+            ইন্স্যুরেন্স</button>
+          <button type="button" class="filter-btn" data-filter="land" data-i18n="filterLand">জমি ও লাইসেন্স</button>
+          <button type="button" class="filter-btn" data-filter="student" data-i18n="filterStudent">পরীক্ষা ও ফর্ম
+            ফিলাপ</button>
+        </div>
+
+        <!-- Dynamic Document Cards -->
+        <div class="doc-cards-grid" id="docCardsGrid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 3: Full Services Showcase (All 18+ items) -->
+    <section class="services-section" id="services">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="servicesTag">আমাদের সার্ভিস</span>
+          <h2 class="section-title" data-i18n="servicesTitle">দোকানে যেসব সেবা পাওয়া যায়</h2>
+          <p class="section-desc" data-i18n="servicesDesc">
+            সরকারি ডিজিটাল কাজ থেকে শুরু করে জেরক্স, বাইন্ডিং ও স্টুডেন্ট সামগ্রী।
+          </p>
+        </div>
+
+        <div class="categories-grid" id="servicesCategoriesGrid">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 4: Future Roadmap Teaser Banner -->
+    <div class="container">
+      <aside class="roadmap-banner" aria-label="Future Roadmap">
+        <div class="roadmap-text">
+          <span class="roadmap-tag" data-i18n="roadmapTag">শীঘ্রই আসছে (Phase 2)</span>
+          <h3 class="roadmap-title" data-i18n="roadmapTitle">অনলাইন ফাইল আপলোড ও অটো-রিনিউয়াল সিস্টেম</h3>
+          <p class="roadmap-desc" data-i18n="roadmapDesc">
+            ওয়েবসাইট থেকেই সরাসরি ফাইল আপলোড এবং আপনার বাইকের ইন্স্যুরেন্স শেষ হওয়ার আগেই স্বয়ংক্রিয় হোয়াটসঅ্যাপ
+            সতর্কবার্তা চালু হতে চলেছে!
+          </p>
+        </div>
+        <a href="https://wa.me/919734573323?text=%E0%A6%A6%E0%A6%BE%E0%A6%A6%E0%A6%BE%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BE%E0%A6%B0%20%E0%A6%97%E0%A6%BE%E0%A6%A1%E0%A6%BC%E0%A6%BF%E0%A6%B0%20%E0%A6%87%E0%A6%A8%E0%A7%8D%E0%A6%B8%E0%A7%8D%E0%A6%AF%E0%A7%81%E0%A6%B0%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%B8%20%E0%A6%B0%E0%A6%BF%E0%A6%A8%E0%A6%BF%E0%A6%89%20%E0%A6%95%E0%A6%B0%E0%A6%BE%E0%A6%A4%E0%A7%87%20%E0%A6%9A%E0%A6%BE%E0%A6%87"
+          target="_blank" rel="noopener" class="btn btn-secondary" style="border-color: #c084fc; color: #f1f5f9;">
+          <span>🛡️</span> <span>পলিসি রিনিউয়াল বুক করুন</span>
+        </a>
+      </aside>
+    </div>
+
+    <!-- Section 5: Location, Address & Driving Map -->
+    <section class="location-section" id="location">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="locationTag">দোকানের অবস্থান</span>
+          <h2 class="section-title" data-i18n="locationTitle">ঠিকানা ও যোগাযোগের সময়</h2>
+        </div>
+
+        <div class="location-grid">
+          <div class="location-card">
+            <h3 class="loc-title">আলি ইন্টারনেট এন্ড জেরক্স</h3>
+            <p style="color: var(--text-secondary); font-size: 0.95rem;">
+              Puncha's Trusted Common Service & Document Printing Center
+            </p>
+
+            <ul class="loc-details-list">
+              <li class="loc-item">
+                <div class="loc-icon-bubble">📍</div>
+                <div class="loc-item-text">
+                  <h4 data-i18n="locAddressTitle">দোকানের সঠিক ঠিকানা</h4>
+                  <p>পুঞ্চা (কৃষি ফার্মের বিপরীতে), পুঞ্চা, পুরুলিয়া, পশ্চিমবঙ্গ — ৭২৩১৫১ <br> (Opposite Krishi Farm,
+                    Puncha, Purulia, WB - 723151)</p>
+                </div>
+              </li>
+
+              <li class="loc-item">
+                <div class="loc-icon-bubble">⏰</div>
+                <div class="loc-item-text">
+                  <h4 data-i18n="locHoursTitle">দোকান খোলার সময়সূচী</h4>
+                  <p>প্রতিদিন খোলা: সকাল ৮:০০ টা – রাত ৯:০০ টা (Monday – Sunday: 8:00 AM – 9:00 PM)</p>
+                </div>
+              </li>
+
+              <li class="loc-item">
+                <div class="loc-icon-bubble">📞</div>
+                <div class="loc-item-text">
+                  <h4 data-i18n="locContactTitle">ফোন ও হোয়াটসঅ্যাপ</h4>
+                  <p>মোবাইল / কল: <a href="tel:9734573323"
+                      style="color: #38bdf8; text-decoration: none; font-weight: 700;">+91 97345 73323</a><br>ইমেল:
+                    allinternetpuncha@gmail.com</p>
+                </div>
+              </li>
+            </ul>
+
+            <div style="display: flex; gap: 0.75rem; flex-wrap: wrap;">
+              <a href="https://www.google.com/maps/dir/?api=1&destination=23.165622,86.655718" target="_blank"
+                rel="noopener" class="btn btn-primary" id="locMapBtn">
+                <span>🧭</span> <span data-i18n="getDirections">দোকানের রাস্তা / ম্যাপ</span>
+              </a>
+              <a href="tel:9734573323" class="btn btn-secondary" id="locCallBtn">
+                <span>📞</span> <span data-i18n="callDirect">ফারুক কে ফোন করুন</span>
+              </a>
+            </div>
+          </div>
+
+          <!-- Embedded Map View -->
+          <div class="map-container">
+            <iframe title="Ali Internet and Xerox Google Map Location"
+              src="https://maps.google.com/maps?q=23.165622,86.655718&hl=bn&z=16&output=embed" loading="lazy"
+              referrerpolicy="no-referrer-when-downgrade" id="googleMapsIframe">
+            </iframe>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Section 6: FAQ Accordion -->
+    <section class="faq-section" id="faq">
+      <div class="container">
+        <div class="section-header">
+          <span class="section-tag" data-i18n="faqTag">সাধারণ জিজ্ঞাসা</span>
+          <h2 class="section-title" data-i18n="faqTitle">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2>
+        </div>
+
+        <div class="faq-grid" id="faqAccordion">
+          <!-- Populated dynamically by app.js -->
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- Phase 2: Digital Pickup Token Modal -->
+  <div class="token-modal-overlay" id="tokenModal" role="dialog" aria-modal="true" aria-labelledby="tokenTitle">
+    <div class="token-slip-card">
+      <div class="token-success-icon">✓</div>
+      <h3 id="tokenTitle" style="font-size: 1.25rem; font-weight: 800; color: #f8fafc;">অর্ডার সফলভাবে জমা হয়েছে!</h3>
+      <p style="font-size: 0.85rem; color: var(--text-muted); margin-top: 0.2rem;">আপনার প্রিন্ট পিকআপ টোকেন নম্বর:</p>
+
+      <div class="token-id-badge" id="modalTokenId">#P-101</div>
+      <div class="token-status-pill" id="modalTokenStatus">⏳ ফারুকের প্রিন্টারে কিউ-তে যুক্ত হয়েছে</div>
+
+      <div class="token-details-table">
+        <div class="token-detail-row">
+          <span>গ্রাহকের নাম:</span>
+          <strong id="modalCustName">রহিম আনসারী</strong>
+        </div>
+        <div class="token-detail-row">
+          <span>কাজের বিবরণ:</span>
+          <strong id="modalServiceDesc">Color Print (3 Copies)</strong>
+        </div>
+        <div class="token-detail-row">
+          <span>মোট প্রদেয়:</span>
+          <strong id="modalTotalAmount" style="color: #38bdf8;">₹30</strong>
+        </div>
+        <div class="token-detail-row">
+          <span>পেমেন্ট স্ট্যাটাস:</span>
+          <strong id="modalPayStatus" style="color: #34d399;">ইউপিআই পেমেন্ট সম্পন্ন</strong>
+        </div>
+      </div>
+
+      <div class="token-modal-actions">
+        <a href="#" target="_blank" rel="noopener" class="btn btn-primary" id="modalWhatsAppBtn" style="padding: 0.8rem; font-size: 0.95rem;">
+          <span>💬</span> <span>ফারুক কে টোকেন সহ জানান</span>
+        </a>
+        <button type="button" class="btn btn-secondary" id="modalCloseBtn" style="padding: 0.7rem; font-size: 0.9rem;">
+          <span>✕</span> <span>বন্ধ করুন / সম্পন্ন</span>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Site Footer -->
+  <footer class="site-footer">
+    <div class="container">
+      <div class="footer-grid">
+        <div class="footer-brand">
+          <h4>আলি ইন্টারনেট এন্ড জেরক্স (Ali Internet & Xerox)</h4>
+          <p data-i18n="footerDesc">
+            পুঞ্চার নির্ভরযোগ্য ডিজিটাল সার্ভিস সেন্টার ও সাইবার কিওস্ক। সরকারি ফর্ম ফিলাপ, উন্নত প্রিন্টিং এবং বিশ্বস্ত
+            ইন্স্যুরেন্স পরিষেবা।
+          </p>
+          <p style="margin-top: 0.8rem; color: #38bdf8; font-size: 0.85rem;">
+            👤 প্রোপ্রাইটার: সেখ ফারুক আলি (Sekh Faruk Ali)
+          </p>
+        </div>
+
+        <div class="footer-col">
+          <h5 data-i18n="footerQuickLinks">গুরুত্বপূর্ণ লিংক</h5>
+          <ul>
+            <li><a href="#home">হোম</a></li>
+            <li><a href="#calculator">প্রিন্ট অর্ডার ক্যালকুলেটর</a></li>
+            <li><a href="#documents">প্রয়োজনীয় কাগজপত্র নির্দেশিকা</a></li>
+            <li><a href="#services">সকল অনলাইন পরিষেবা</a></li>
+            <li><a href="#location">দোকানের অবস্থান ও পথনির্দেশ</a></li>
+          </ul>
+        </div>
+
+        <div class="footer-col">
+          <h5 data-i18n="footerServices">জনপ্রিয় সার্ভিস</h5>
+          <ul>
+            <li><a href="#documents">ডিজিটাল রেশন কার্ড আবেদন</a></li>
+            <li><a href="#documents">ড্রাইভিং লাইসেন্স (Sarathi)</a></li>
+            <li><a href="#documents">জমির পর্চা ও খতিয়ান (Banglarbhumi)</a></li>
+            <li><a href="#documents">বাইক ও গাড়ির ইন্স্যুরেন্স</a></li>
+            <li><a href="#documents">তাৎক্ষণিক প্যান কার্ড (e-PAN)</a></li>
+          </ul>
+        </div>
+      </div>
+
+      <div class="footer-bottom">
+        <p data-i18n="footerCopyright">© 2026 আলি ইন্টারনেট এন্ড জেরক্স (Ali Internet & Xerox). পুঞ্চা, পুরুলিয়া —
+          ৭২৩১৫১। All Rights Reserved.</p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Sticky Bottom Mobile Action Bar (Call / WhatsApp / Docs) -->
+  <div class="mobile-sticky-bar" id="mobileStickyBar" aria-label="Quick Mobile Actions">
+    <div class="mobile-sticky-grid">
+      <a href="tel:9734573323" class="mobile-bar-btn btn-bar-call" id="mobileBarCall">
+        <span style="font-size: 1.1rem;">📞</span>
+        <span data-i18n="callDirect">কল করুন</span>
+      </a>
+
+      <a href="https://wa.me/919734573323?text=%E0%A6%A8%E0%A6%AE%E0%A6%B8%E0%A7%8D%E0%A6%95%E0%A6%BE%E0%A6%B0%20%E0%A6%AB%E0%A6%BE%E0%A6%B0%E0%A7%81%E0%A6%95%20%E0%A6%A6%E0%A6%BE%2C%20%E0%A6%86%E0%A6%AE%E0%A6%BE%E0%A6%B0%20%E0%A6%8F%E0%A6%95%E0%A6%9F%E0%A6%BF%20%E0%A6%A1%E0%A6%95%E0%A7%81%E0%A6%AE%E0%A7%87%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%AA%E0%A7%8D%E0%A6%B0%E0%A6%BF%E0%A6%A8%E0%A7%8D%E0%A6%9F%20%E0%A6%95%E0%A6%B0%E0%A6%BE%E0%A6%A4%E0%A7%87%20%E0%A6%B9%E0%A6%AC%E0%A7%87%E0%A5%A4"
+        target="_blank" rel="noopener" class="mobile-bar-btn btn-bar-whatsapp" id="mobileBarWhatsApp">
+        <span style="font-size: 1.15rem;">💬</span>
+        <span data-i18n="btnSendWhatsApp">হোয়াটসঅ্যাপ প্রিন্ট</span>
+      </a>
+
+      <a href="#documents" class="mobile-bar-btn btn-bar-docs" id="mobileBarDocs">
+        <span style="font-size: 1.1rem;">📋</span>
+        <span data-i18n="btnCheckDocs">কাগজপত্র</span>
+      </a>
+    </div>
+  </div>
+
+  <!-- Scripts -->
+  <script src="js/data.js"></script>
+  <script src="js/app.js"></script>
+</body>
+
+</html>

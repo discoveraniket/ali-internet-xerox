@@ -1,0 +1,23 @@
+{
+  "name": "ali-internet-xerox",
+  "version": "1.0.0",
+  "description": "Digital Citizen Services & Web-to-Counter Print Desk for Ali Internet & Xerox (Puncha, Purulia)",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js"
+  },
+  "keywords": [
+    "cyber-cafe",
+    "xerox",
+    "csc",
+    "purulia",
+    "puncha",
+    "west-bengal",
+    "digital-seva"
+  ],
+  "author": "Sekh Faruk Ali",
+  "license": "ISC",
+  "engines": {
+    "node": ">=18.0.0"
+  }
+}
