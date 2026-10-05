@@ -20,6 +20,83 @@
   --c-purple: #a855f7;
 
   --c-font: 'Outfit', 'Noto Sans Bengali', system-ui, sans-serif;
+
+  /* Theme-adaptive tokens (dark values here; light overridden below) */
+  --c-tint: rgba(255, 255, 255, 0.05);
+  --c-tint-hover: rgba(255, 255, 255, 0.12);
+  --c-tint-strong: rgba(255, 255, 255, 0.15);
+  --c-tint-soft: rgba(255, 255, 255, 0.03);
+  --c-dash: rgba(255, 255, 255, 0.06);
+  --c-badge-dark: rgba(0, 0, 0, 0.35);
+}
+
+/* Light is the default theme: no-JS / pre-script fallback when OS isn't dark */
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) {
+    --c-bg: #f1f5f9;
+    --c-surface: #ffffff;
+    --c-card: #f8fafc;
+    --c-card-hover: #eef2f7;
+    --c-border: rgba(15, 23, 42, 0.12);
+    --c-text-main: #0f172a;
+    --c-text-muted: #52607a;
+    --c-primary: #0284c7;
+    --c-tint: rgba(15, 23, 42, 0.06);
+    --c-tint-hover: rgba(15, 23, 42, 0.12);
+    --c-tint-strong: rgba(15, 23, 42, 0.15);
+    --c-tint-soft: rgba(15, 23, 42, 0.03);
+    --c-dash: rgba(15, 23, 42, 0.12);
+    --c-badge-dark: rgba(15, 23, 42, 0.08);
+    color-scheme: light;
+  }
+}
+
+/* ==========================================================================
+   Light Theme for Counter Desk — DEFAULT (js/theme.js sets html[data-theme])
+   ========================================================================== */
+html[data-theme="light"] {
+  --c-bg: #f1f5f9;
+  --c-surface: #ffffff;
+  --c-card: #f8fafc;
+  --c-card-hover: #eef2f7;
+  --c-border: rgba(15, 23, 42, 0.12);
+
+  --c-text-main: #0f172a;
+  --c-text-muted: #52607a;
+
+  --c-primary: #0284c7;
+
+  /* Theme-adaptive tokens */
+  --c-tint: rgba(15, 23, 42, 0.06);
+  --c-tint-hover: rgba(15, 23, 42, 0.12);
+  --c-tint-strong: rgba(15, 23, 42, 0.15);
+  --c-tint-soft: rgba(15, 23, 42, 0.03);
+  --c-dash: rgba(15, 23, 42, 0.12);
+  --c-badge-dark: rgba(15, 23, 42, 0.08);
+}
+
+html[data-theme="light"] .tab-btn.active {
+  border-color: #0284c7;
+}
+
+html[data-theme="light"] .badge-completed {
+  color: #475569;
+}
+
+html[data-theme="light"] .btn-status-complete {
+  color: #334155;
+}
+
+html[data-theme="light"] .btn-whatsapp {
+  color: #15803d;
+}
+
+html[data-theme="light"] .order-card:hover {
+  box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
+}
+
+body {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 
 *, *::before, *::after {
@@ -128,14 +205,14 @@ body {
   font-weight: 600;
   cursor: pointer;
   border: 1px solid var(--c-border);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--c-tint);
   color: var(--c-text-main);
   text-decoration: none;
   transition: all 0.2s ease;
 }
 
 .c-btn:hover {
-  background: rgba(255, 255, 255, 0.12);
+  background: var(--c-tint-hover);
   border-color: var(--c-primary);
 }
 
@@ -252,7 +329,7 @@ body {
 }
 
 .tab-badge {
-  background: rgba(0, 0, 0, 0.35);
+  background: var(--c-badge-dark);
   padding: 0.1rem 0.5rem;
   border-radius: 9999px;
   font-size: 0.75rem;
@@ -344,7 +421,7 @@ body {
 }
 
 .order-customer-box {
-  background: rgba(255, 255, 255, 0.03);
+  background: var(--c-tint-soft);
   border: 1px solid var(--c-border);
   border-radius: 10px;
   padding: 0.75rem 0.9rem;
@@ -380,13 +457,13 @@ body {
   font-size: 1rem;
   text-decoration: none;
   border: 1px solid var(--c-border);
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--c-tint);
   color: var(--c-text-main);
   transition: all 0.2s ease;
 }
 
 .c-icon-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--c-tint-strong);
   transform: scale(1.05);
 }
 
@@ -409,7 +486,7 @@ body {
   display: flex;
   justify-content: space-between;
   color: var(--c-text-muted);
-  border-bottom: 1px dashed rgba(255, 255, 255, 0.06);
+  border-bottom: 1px dashed var(--c-dash);
   padding-bottom: 0.3rem;
 }
 
