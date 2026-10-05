@@ -53,6 +53,9 @@
   --border-strong: rgba(255, 255, 255, 0.2);
   --overlay-bg: rgba(4, 8, 16, 0.72);
   --ambient-blob-opacity: 1;
+
+  /* Top notice bar (gradient strip holding status + theme/lang buttons) */
+  --notice-bar-bg: linear-gradient(90deg, #1e1b4b 0%, #0f172a 50%, #064e3b 100%);
 }
 
 /* Light is the default theme: when js/theme.js hasn't run yet (or JS is off),
@@ -75,7 +78,21 @@
     --border-strong: rgba(15, 23, 42, 0.18);
     --overlay-bg: rgba(15, 23, 42, 0.45);
     --ambient-blob-opacity: 0.55;
+    --notice-bar-bg: linear-gradient(90deg, #dbeafe 0%, #f4f7fb 50%, #d1fae5 100%);
     color-scheme: light;
+  }
+
+  /* Status pills invert to deep, readable tones on the light notice bar */
+  html:not([data-theme]) .shop-status-pill.open {
+    background: rgba(5, 150, 105, 0.12);
+    color: #047857;
+    border-color: rgba(5, 150, 105, 0.3);
+  }
+
+  html:not([data-theme]) .shop-status-pill.closed {
+    background: rgba(225, 29, 72, 0.10);
+    color: #be123c;
+    border-color: rgba(225, 29, 72, 0.28);
   }
 }
 
@@ -121,6 +138,22 @@ html[data-theme="light"] {
   --border-strong: rgba(15, 23, 42, 0.18);
   --overlay-bg: rgba(15, 23, 42, 0.45);
   --ambient-blob-opacity: 0.55;
+
+  /* Top notice bar: soft, airy strip that blends into the light page */
+  --notice-bar-bg: linear-gradient(90deg, #dbeafe 0%, #f4f7fb 50%, #d1fae5 100%);
+}
+
+/* Status pills invert to deep, readable tones on the light notice bar */
+html[data-theme="light"] .shop-status-pill.open {
+  background: rgba(5, 150, 105, 0.12);
+  color: #047857;
+  border-color: rgba(5, 150, 105, 0.3);
+}
+
+html[data-theme="light"] .shop-status-pill.closed {
+  background: rgba(225, 29, 72, 0.10);
+  color: #be123c;
+  border-color: rgba(225, 29, 72, 0.28);
 }
 
 /* Explicit dark selection (also what 'system' resolves to on dark OS) */
@@ -250,7 +283,7 @@ body.lang-bn {
    Header & Navigation
    ========================================================================== */
 .top-notice-bar {
-  background: linear-gradient(90deg, #1e1b4b 0%, #0f172a 50%, #064e3b 100%);
+  background: var(--notice-bar-bg);
   border-bottom: 1px solid var(--border-subtle);
   padding: 0.5rem 0;
   font-size: 0.85rem;
