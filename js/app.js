@@ -73,12 +73,20 @@ document.addEventListener('DOMContentLoaded', () => {
       langBtn: "বাংলায় দেখুন",
       shopOpen: "Open Now (8:00 AM – 9:00 PM)",
       shopClosed: "Closed Now (Opens 8:00 AM)",
+      themeLabel: "Theme (Light / Dark / System)",
+      topLocationLabel: "📍 Puncha (Opposite Krishi Farm)",
+      brandTitle: "Ali Internet & Xerox",
+      brandSubtitle: "Ali Internet & Xerox • Puncha, Purulia",
       navHome: "Home",
       navDocs: "Document Guide",
       navServices: "Services",
       navCalculator: "Print Order",
       navLocation: "Location",
-      heroBadge: "⚡ Puncha's Digital & Citizen Kiosk",
+      navCounter: "Counter Desk",
+      headerWhatsApp: "WhatsApp",
+      mobileCallBtn: "Call: 97345 73323",
+      mobileWaBtn: "WhatsApp Chat",
+      heroBadge: "Puncha's Digital & Citizen Kiosk",
       heroTitle1: "Fast, Reliable",
       heroTitle2: "Digital Citizen Services",
       heroTitle3: "& High-Speed Printing in Puncha",
@@ -88,6 +96,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trustXerox: "Instant Xerox & Lamination",
       trustInsurance: "Ali Insurance Point",
       trustGovt: "All Govt Digital Portals",
+      trustStamp: "Custom Rubber Stamps",
       trustLocal: "Opposite Krishi Farm, Puncha",
       shopPhotoBadge: "Physical Shop Front",
       shopOwnerLabel: "Sekh Faruk Ali (Proprietor)",
@@ -101,6 +110,32 @@ document.addEventListener('DOMContentLoaded', () => {
       calcPriceEstLabel: "Total Payable Bill:",
       calcDisclaimer: "*Price calculated dynamically based on copies, paper size, and finishing.",
       calcSendBtn: "WhatsApp Order Backup",
+      dropzoneTitle: "Drop your file here or click to browse",
+      dropzoneHint: "Supports PDF, Word, JPG, PNG, WEBP (Max 25 MB)",
+      btnRemoveFile: "Remove File ✕",
+      labelPaperSize: "Paper Size",
+      paperA4: "A4 (Standard)",
+      paperLegal: "Legal (Deed / Stamp)",
+      labelPrintSides: "Print Sides",
+      sidesSingle: "Single Sided",
+      sidesDouble: "Double Sided (Both)",
+      labelFinishing: "Additional Finishing (Optional)",
+      chkLamination: "Lamination (+₹20/doc)",
+      chkSpiral: "Spiral Binding (+₹35/book)",
+      labelCustName: "Your Name (Customer Name) *",
+      labelCustPhone: "Mobile / WhatsApp Number *",
+      custNamePlaceholder: "e.g. John Doe",
+      custPhonePlaceholder: "10-digit mobile number",
+      labelPaymentMethod: "Choose Payment Method",
+      payUpi: "UPI (QR / Instant Pay)",
+      payCash: "Pay Cash at Shop Counter",
+      upiScanHint: "Scan the QR code below using Google Pay, PhonePe, Paytm or any UPI app:",
+      btnUpiApp: "Pay with Mobile UPI App",
+      upiOwner: "Sekh Faruk Ali",
+      btnSubmitOrder: "Submit Order & File to Counter",
+      btnWhatsAppBackup: "WhatsApp Order Backup",
+      submittingOrder: "Submitting order...",
+      btnBookRenewal: "Book Policy Renewal",
       docGuideTag: "Zero Hassle Guide",
       docGuideTitle: "Check Required Documents Before Visiting",
       docGuideDesc: "Never make a wasted trip again! Check the exact documents, certificates, and photos needed for your government application.",
@@ -124,22 +159,54 @@ document.addEventListener('DOMContentLoaded', () => {
       locationTag: "Visit Us",
       locationTitle: "Shop Address & Timings",
       locAddressTitle: "Physical Location",
+      shopAddress: "Opposite Krishi Farm, Puncha, Purulia, West Bengal — 723151",
       locHoursTitle: "Shop Hours",
+      shopHoursDisplay: "Open Daily: 8:00 AM – 9:00 PM (Monday – Sunday)",
       locContactTitle: "Phone & WhatsApp",
+      phoneLabel: "Mobile / Call:",
+      emailLabel: "Email:",
+      tokenSuccessTitle: "Order Submitted Successfully!",
+      tokenPickupLabel: "Your Digital Print Pickup Token:",
+      tokenQueuedStatus: "⏳ Added to Faruk's shop printer queue",
+      modalCustNameLabel: "Customer Name:",
+      modalServiceDescLabel: "Service Details:",
+      modalTotalLabel: "Total Payable:",
+      modalPayStatusLabel: "Payment Status:",
+      modalBtnNotify: "Notify Faruk with Token",
+      modalBtnClose: "Close / Done",
       footerDesc: "Puncha's premier digital service center & cyber kiosk. Providing transparent government application assistance, high-speed document printing, and vehicle insurance.",
+      footerProprietor: "👤 Proprietor: Sekh Faruk Ali",
       footerQuickLinks: "Quick Navigation",
       footerServices: "Top Services",
-      footerCopyright: "© 2026 Ali Internet & Xerox. Built for Puncha, Purulia."
+      footRation: "Digital Ration Card Apply",
+      footDriving: "Driving License (Sarathi)",
+      footPorcha: "Jamir Porcha & Records (Banglarbhumi)",
+      footInsurance: "Bike & Vehicle Insurance",
+      footStamp: "Custom Rubber Stamp Making",
+      footPan: "Instant PAN Card (e-PAN)",
+      footerCopyright: "© 2026 Ali Internet & Xerox. Built for Puncha, Purulia.",
+      barCall: "Call",
+      barPrint: "Print Desk",
+      barWhatsApp: "WhatsApp",
+      barDocs: "Docs"
     },
     bn: {
       langBtn: "Switch to English",
       shopOpen: "এখন খোলা আছে (সকাল ৮টা – রাত ৯টা)",
       shopClosed: "এখন বন্ধ আছে (সকাল ৮টায় খুলবে)",
+      themeLabel: "থিম পরিবর্তন (Theme)",
+      topLocationLabel: "📍 পুঞ্চা (কৃষি ফার্মের বিপরীতে)",
+      brandTitle: "আলি ইন্টারনেট এন্ড জেরক্স",
+      brandSubtitle: "Ali Internet & Xerox • Puncha, Purulia",
       navHome: "হোম",
       navDocs: "ডকুমেন্ট গাইড",
       navServices: "সকল সার্ভিস",
       navCalculator: "প্রিন্ট অর্ডার",
       navLocation: "ঠিকানা ও ম্যাপ",
+      navCounter: "কাউন্টার ডেস্ক",
+      headerWhatsApp: "হোয়াটসঅ্যাপ",
+      mobileCallBtn: "সরাসরি কল",
+      mobileWaBtn: "হোয়াটসঅ্যাপ",
       heroBadge: "পুঞ্চার বিশ্বস্ত অনলাইন ও ডিজিটাল সেবা কেন্দ্র",
       heroTitle1: "আপনার এলাকার বিশ্বস্ত",
       heroTitle2: "ডিজিটাল সরকারি সেবা",
@@ -150,6 +217,7 @@ document.addEventListener('DOMContentLoaded', () => {
       trustXerox: "দ্রুত জেরক্স ও লেমিনেশন",
       trustInsurance: "আলি ইন্স্যুরেন্স পয়েন্ট",
       trustGovt: "সকল সরকারি পোর্টাল আবেদন",
+      trustStamp: "রবার স্ট্যাম্প তৈরি",
       trustLocal: "পুঞ্চা কৃষি ফার্মের বিপরীতে",
       shopPhotoBadge: "আমাদের আসল দোকান",
       shopOwnerLabel: "সেখ ফারুক আলি (প্রোপ্রাইটার)",
@@ -163,6 +231,32 @@ document.addEventListener('DOMContentLoaded', () => {
       calcPriceEstLabel: "মোট প্রদেয় বিল:",
       calcDisclaimer: "*ফাইল ও কনফিগারেশন অনুযায়ী স্বয়ংক্রিয়ভাবে হিসাবকৃত মূল্য।",
       calcSendBtn: "হোয়াটসঅ্যাপ ব্যাকআপ",
+      dropzoneTitle: "এখানে ফাইল ড্রপ করুন অথবা সিলেক্ট করুন",
+      dropzoneHint: "PDF, Word, JPG, PNG, WEBP ফাইল সমর্থিত (সর্বোচ্চ ২৫ MB)",
+      btnRemoveFile: "রিমুভ করুন ✕",
+      labelPaperSize: "কাগজের মাপ (Paper Size)",
+      paperA4: "A4 (Standard)",
+      paperLegal: "Legal (দলিল/স্ট্যাম্প)",
+      labelPrintSides: "প্রিন্ট সাইড (Print Sides)",
+      sidesSingle: "এক পিঠ (Single)",
+      sidesDouble: "উভয় পিঠ (Both)",
+      labelFinishing: "অতিরিক্ত ফিনিশিং (Optional)",
+      chkLamination: "লেমিনেশন (+₹২০/ডকুমেন্ট)",
+      chkSpiral: "স্পাইরাল বাইন্ডিং (+₹৩৫/বই)",
+      labelCustName: "আপনার নাম (Customer Name) *",
+      labelCustPhone: "মোবাইল / হোয়াটসঅ্যাপ নম্বর *",
+      custNamePlaceholder: "যেমন: অনিকেত সরকার",
+      custPhonePlaceholder: "১০ সংখ্যার মোবাইল নম্বর",
+      labelPaymentMethod: "মূল্য পরিশোধের পদ্ধতি বেছে নিন",
+      payUpi: "ইউপিআই (UPI QR / Instant Pay)",
+      payCash: "দোকানে এসে নগদ প্রদান (Cash)",
+      upiScanHint: "Google Pay, PhonePe, Paytm বা যেকোনো UPI অ্যাপ দিয়ে নিচের QR স্ক্যান করুন:",
+      btnUpiApp: "মোবাইল UPI অ্যাপ দিয়ে পে করুন",
+      upiOwner: "সেখ ফারুক আলি",
+      btnSubmitOrder: "কাউন্টারে অর্ডার ও ফাইল পাঠান",
+      btnWhatsAppBackup: "হোয়াটসঅ্যাপ ব্যাকআপ",
+      submittingOrder: "অর্ডার পাঠানো হচ্ছে...",
+      btnBookRenewal: "পলিসি রিনিউয়াল বুক করুন",
       docGuideTag: "ডকুমেন্ট চেকলিস্ট",
       docGuideTitle: "আসার আগে প্রয়োজনীয় কাগজপত্র দেখে নিন",
       docGuideDesc: "কোনো কাগজপত্র ফেলে আসবেন না! আপনার প্রয়োজনীয় কাজের জন্য সাথে কী কী আসল ও জেরক্স আনতে হবে নিচে দেখে নিন।",
@@ -186,12 +280,36 @@ document.addEventListener('DOMContentLoaded', () => {
       locationTag: "দোকানের অবস্থান",
       locationTitle: "ঠিকানা ও যোগাযোগের সময়",
       locAddressTitle: "দোকানের সঠিক ঠিকানা",
+      shopAddress: "পুঞ্চা (কৃষি ফার্মের বিপরীতে), পুঞ্চা, পুরুলিয়া, পশ্চিমবঙ্গ — ৭২৩১৫১",
       locHoursTitle: "দোকান খোলার সময়সূচী",
+      shopHoursDisplay: "প্রতিদিন খোলা: সকাল ৮:০০ টা – রাত ৯:০০ টা",
       locContactTitle: "ফোন ও হোয়াটসঅ্যাপ",
+      phoneLabel: "মোবাইল / কল:",
+      emailLabel: "ইমেল:",
+      tokenSuccessTitle: "অর্ডার সফলভাবে জমা হয়েছে!",
+      tokenPickupLabel: "আপনার প্রিন্ট পিকআপ টোকেন নম্বর:",
+      tokenQueuedStatus: "⏳ ফারুকের প্রিন্টারে কিউ-তে যুক্ত হয়েছে",
+      modalCustNameLabel: "গ্রাহকের নাম:",
+      modalServiceDescLabel: "কাজের বিবরণ:",
+      modalTotalLabel: "মোট প্রদেয়:",
+      modalPayStatusLabel: "পেমেন্ট স্ট্যাটাস:",
+      modalBtnNotify: "ফারুক কে টোকেন সহ জানান",
+      modalBtnClose: "বন্ধ করুন / সম্পন্ন",
       footerDesc: "পুঞ্চার নির্ভরযোগ্য ডিজিটাল সার্ভিস সেন্টার ও সাইবার কিওস্ক। সরকারি ফর্ম ফিলাপ, উন্নত প্রিন্টিং এবং বিশ্বস্ত ইন্স্যুরেন্স পরিষেবা।",
+      footerProprietor: "👤 প্রোপ্রাইটার: সেখ ফারুক আলি (Sekh Faruk Ali)",
       footerQuickLinks: "গুরুত্বপূর্ণ লিংক",
       footerServices: "জনপ্রিয় সার্ভিস",
-      footerCopyright: "© ২০২৬ আলি ইন্টারনেট এন্ড জেরক্স। পুঞ্চা, পুরুলিয়া।"
+      footRation: "ডিজিটাল রেশন কার্ড আবেদন",
+      footDriving: "ড্রাইভিং লাইসেন্স (Sarathi)",
+      footPorcha: "জমির পর্চা ও খতিয়ান (Banglarbhumi)",
+      footInsurance: "বাইক ও গাড়ির ইন্স্যুরেন্স",
+      footStamp: "রবার স্ট্যাম্প তৈরি (Official Seals)",
+      footPan: "তাৎক্ষণিক প্যান কার্ড (e-PAN)",
+      footerCopyright: "© ২০২৬ আলি ইন্টারনেট এন্ড জেরক্স। পুঞ্চা, পুরুলিয়া।",
+      barCall: "কল",
+      barPrint: "প্রিন্ট জমা",
+      barWhatsApp: "হোয়াটসঅ্যাপ",
+      barDocs: "কাগজপত্র"
     }
   };
 
@@ -237,6 +355,12 @@ document.addEventListener('DOMContentLoaded', () => {
     // Update Placeholders
     if (searchInput) {
       searchInput.placeholder = I18N[lang].searchPlaceholder;
+    }
+    if (custNameInput) {
+      custNameInput.placeholder = I18N[lang].custNamePlaceholder;
+    }
+    if (custPhoneInput) {
+      custPhoneInput.placeholder = I18N[lang].custPhonePlaceholder;
     }
 
     // Refresh dynamic components
@@ -480,7 +604,7 @@ document.addEventListener('DOMContentLoaded', () => {
       };
 
       btnSubmitOrder.disabled = true;
-      btnSubmitOrder.innerHTML = `<span>⏳</span> <span>অর্ডার পাঠানো হচ্ছে...</span>`;
+      btnSubmitOrder.innerHTML = `<span>⏳</span> <span>${I18N[currentLang].submittingOrder}</span>`;
 
       try {
         const res = await fetch('/api/orders', {
@@ -500,7 +624,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fallbackLocalToken(orderPayload);
       } finally {
         btnSubmitOrder.disabled = false;
-        btnSubmitOrder.innerHTML = `<span>🚀</span> <span>কাউন্টারে অর্ডার ও ফাইল পাঠান</span>`;
+        btnSubmitOrder.innerHTML = `<span>🚀</span> <span>${I18N[currentLang].btnSubmitOrder}</span>`;
       }
     });
   }
@@ -518,9 +642,13 @@ document.addEventListener('DOMContentLoaded', () => {
   function showTokenModal(order) {
     modalTokenId.textContent = order.token;
     modalCustName.textContent = order.customerName;
-    modalServiceDesc.textContent = `${order.serviceName} (${order.copies} Copies, ${order.paperSize})`;
+    modalServiceDesc.textContent = `${order.serviceName} (${order.copies} ${currentLang === 'bn' ? 'কপি' : 'Copies'}, ${order.paperSize})`;
     modalTotalAmount.textContent = `₹${order.totalAmount}`;
-    modalPayStatus.textContent = order.paymentMethod === 'upi' ? (currentLang === 'bn' ? 'ইউপিআই পেমেন্ট' : 'UPI Payment') : (currentLang === 'bn' ? 'দোকানে নগদ প্রদান' : 'Cash at Shop');
+    modalPayStatus.textContent = order.paymentMethod === 'upi' ? (currentLang === 'bn' ? 'ইউপিআই পেমেন্ট সম্পন্ন' : 'UPI Payment Completed') : (currentLang === 'bn' ? 'দোকানে নগদ প্রদান' : 'Cash at Shop');
+    const modalStatusEl = document.getElementById('modalTokenStatus');
+    if (modalStatusEl) {
+      modalStatusEl.textContent = I18N[currentLang].tokenQueuedStatus;
+    }
 
     const waMsg = currentLang === 'bn'
       ? `নমস্কার ফারুক! আমি ওয়েবসাইট থেকে প্রিন্ট অর্ডার (${order.token}) জমা দিয়েছি।\nগ্রাহক: ${order.customerName}\nকাজ: ${order.serviceName} (${order.copies} Copies)\nমোট বিল: ₹${order.totalAmount} (${order.paymentMethod === 'upi' ? 'UPI' : 'নগদ'})\nদয়া করে প্রিন্ট করে রাখবেন।`

@@ -40,13 +40,18 @@
     return resolved;
   }
 
-  // Update every toggle button on the page (main site + counter desk share this)
-  // Buttons are icon-only; the theme name is conveyed via aria-label/title.
+  // Update every toggle button on the page (main site, mobile menu + counter desk share this)
   function updateButtons(pref) {
     const icons = { light: '☀️', dark: '🌙', system: '💻' };
     const labels = { light: 'Light', dark: 'Dark', system: 'System' };
     document.querySelectorAll('.theme-toggle-btn').forEach(btn => {
-      btn.innerHTML = '<span aria-hidden="true">' + icons[pref] + '</span>';
+      const textEl = btn.querySelector('.theme-btn-text');
+      const iconEl = btn.querySelector('.theme-btn-icon');
+      if (textEl && iconEl) {
+        iconEl.textContent = icons[pref];
+      } else {
+        btn.innerHTML = '<span aria-hidden="true">' + icons[pref] + '</span>';
+      }
       btn.setAttribute('aria-label', 'Theme: ' + labels[pref] + '. Click to change.');
       btn.title = 'Theme: ' + labels[pref] + ' (click to switch)';
     });

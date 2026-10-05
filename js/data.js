@@ -309,6 +309,35 @@ const SHOP_DATA = {
       },
       turnaround: { en: "Instant Acknowledgment Printout", bn: "তাৎক্ষণিক আবেদনের প্রমাণপত্র ও রসিদ প্রিন্ট" },
       feeHint: { en: "Exam application fee + Nominal cyber cafe charge", bn: "পরীক্ষার সরকারি ফি + সাইবার ক্যাফে চার্জ" }
+    },
+    {
+      id: "rubber-stamp",
+      category: "land",
+      icon: "🔏",
+      title: {
+        en: "Custom Rubber Stamp & Seal Making",
+        bn: "রবার স্ট্যাম্প ও অফিস সিল তৈরি"
+      },
+      shortDesc: {
+        en: "Official, doctor, advocate, business, school, and signature rubber stamps made with high-durability polymer.",
+        bn: "অফিস, ডাক্তার, উকিল, ব্যবসা, স্কুল ও স্বাক্ষর স্ট্যাম্প — উন্নত মানের দীর্ঘস্থায়ী পলিমার।"
+      },
+      documents: {
+        en: [
+          "Stamp Matter / Text (Design, Name, Designation, Address)",
+          "Organization Letterhead or Trade License (for official/business stamps)",
+          "Doctor Registration / Advocate Bar Certificate (for professional seals)",
+          "Choice of format: Standard Wooden Handle, Self-Inking Dater, or Pocket Stamp"
+        ],
+        bn: [
+          "স্ট্যাম্পের বিষয়বস্তু / লেখা (নাম, পদবী, প্রতিষ্ঠানের নাম ও ঠিকানা)",
+          "প্রতিষ্ঠানের লেটারহেড অথবা ট্রেড লাইসেন্স (অফিস বা ব্যবসার সিলের জন্য)",
+          "ডাক্তার বা উকিলের রেজিস্ট্রেশন প্রমাণপত্র (পেশাগত সিলের ক্ষেত্রে)",
+          "স্ট্যাম্পের ধরন পছন্দ: সাধারণ কাঠের হাতল, সেল্ফ-ইঙ্কিং বা পকেট স্ট্যাম্প"
+        ]
+      },
+      turnaround: { en: "Same Day or 24 Hours", bn: "একই দিনে বা ২৪ ঘণ্টার মধ্যে ডেলিভারি" },
+      feeHint: { en: "Starting from ₹120 (based on size & type)", bn: "মাত্র ₹১২০ থেকে শুরু (সাইজ ও মডেল অনুযায়ী)" }
     }
   ],
 
@@ -374,11 +403,22 @@ const SHOP_DATA = {
     colorPrint: { label: { en: "Color Printout (কালার প্রিন্ট)", bn: "কালার প্রিন্ট" }, rate: 10, unit: "page" },
     photoPassport: { label: { en: "Passport Photos (8 Copies Sheet)", bn: "পাসপোর্ট ছবি (৮ কপি শিট)" }, rate: 40, unit: "sheet" },
     lamination: { label: { en: "A4 Lamination (লেমিনেশন)", bn: "A4 লেমিনেশন" }, rate: 20, unit: "doc" },
-    spiralBinding: { label: { en: "Spiral Binding (স্পাইরাল বাইন্ডিং)", bn: "স্পাইরাল বাইন্ডিং" }, rate: 35, unit: "book" }
+    spiralBinding: { label: { en: "Spiral Binding (স্পাইরাল বাইন্ডিং)", bn: "স্পাইরাল বাইন্ডিং" }, rate: 35, unit: "book" },
+    rubberStamp: { label: { en: "Custom Rubber Stamp (রবার স্ট্যাম্প)", bn: "রবার স্ট্যাম্প তৈরি" }, rate: 120, unit: "stamp" }
   },
 
   // Frequently Asked Questions
   faqs: [
+    {
+      q: {
+        en: "Can I get official rubber stamps made for my school, office, or business?",
+        bn: "আপনার দোকানে কি স্কুল, অফিস বা ব্যবসার রবার স্ট্যাম্প তৈরি করা হয়?"
+      },
+      a: {
+        en: "Yes! We make high-quality custom polymer rubber stamps and self-inking seals for schools, gram panchayats, doctors, advocates, shops, and businesses. You can send the stamp text via WhatsApp or bring it directly to the counter.",
+        bn: "হ্যাঁ! আমাদের দোকানে স্কুল, গ্রাম পঞ্চায়েত, ডাক্তার, উকিল, দোকান ও ব্যবসার জন্য উন্নত মানের রবার স্ট্যাম্প এবং সেল্ফ-ইঙ্কিং সিল তৈরি করা হয়। আপনি হোয়াটসঅ্যাপে লেখা পাঠাতে পারেন অথবা সরাসরি দোকানে এসে অর্ডার দিতে পারেন।"
+      }
+    },
     {
       q: {
         en: "Can I send my documents on WhatsApp and collect the printout later?",
