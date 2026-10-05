@@ -140,7 +140,7 @@ document.addEventListener('DOMContentLoaded', () => {
       navServices: "সকল সার্ভিস",
       navCalculator: "প্রিন্ট অর্ডার",
       navLocation: "ঠিকানা ও ম্যাপ",
-      heroBadge: "⚡ পুঞ্চার বিশ্বস্ত অনলাইন ও ডিজিটাল সেবা কেন্দ্র",
+      heroBadge: "পুঞ্চার বিশ্বস্ত অনলাইন ও ডিজিটাল সেবা কেন্দ্র",
       heroTitle1: "আপনার এলাকার বিশ্বস্ত",
       heroTitle2: "ডিজিটাল সরকারি সেবা",
       heroTitle3: "ও দ্রুত প্রিন্টিং ও জেরক্স",
