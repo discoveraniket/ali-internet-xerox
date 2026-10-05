@@ -16,7 +16,8 @@ document.addEventListener('DOMContentLoaded', () => {
 
   // Elements
   const langToggleBtn = document.getElementById('langToggleBtn');
-  const langLabel = document.getElementById('langLabel');
+  const langLabel = document.getElementById('langLabel');   // screen-reader-only text
+  const langIcon = document.getElementById('langIcon');     // visible icon glyph
   const shopStatusBadge = document.getElementById('shopStatusBadge');
   const docCardsContainer = document.getElementById('docCardsGrid');
   const searchInput = document.getElementById('docSearchInput');
@@ -220,8 +221,10 @@ document.addEventListener('DOMContentLoaded', () => {
       document.body.classList.remove('lang-bn');
     }
 
-    // Update Language Toggle Button label
-    langLabel.textContent = I18N[lang].langBtn;
+    // Update Language Toggle button (icon-only): visible glyph + accessible text
+    if (langLabel) langLabel.textContent = I18N[lang].langBtn;
+    if (langIcon) langIcon.textContent = lang === 'bn' ? 'EN' : 'বাং';
+    if (langToggleBtn) langToggleBtn.setAttribute('aria-label', I18N[lang].langBtn);
 
     // Update all i18n text nodes
     document.querySelectorAll('[data-i18n]').forEach(el => {
@@ -688,4 +691,40 @@ document.addEventListener('DOMContentLoaded', () => {
   // Initial Run
   setLanguage(currentLang);
   setInterval(updateShopStatus, 60000); // Check shop status every 1 minute
+
+  // 7. Mobile Navigation (Hamburger Menu)
+  const menuToggleBtn = document.getElementById('menuToggleBtn');
+  const mobileNav = document.getElementById('mobileNav');
+
+  function closeMobileMenu() {
+    if (!mobileNav || !menuToggleBtn) return;
+    mobileNav.classList.remove('open');
+    menuToggleBtn.setAttribute('aria-expanded', 'false');
+    menuToggleBtn.setAttribute('aria-label', 'Open Menu');
+  }
+
+  if (menuToggleBtn && mobileNav) {
+    menuToggleBtn.addEventListener('click', () => {
+      const isOpen = mobileNav.classList.toggle('open');
+      menuToggleBtn.setAttribute('aria-expanded', String(isOpen));
+      menuToggleBtn.setAttribute('aria-label', isOpen ? 'Close Menu' : 'Open Menu');
+    });
+
+    // Close the menu after tapping any link (single-page anchors & external links)
+    mobileNav.querySelectorAll('a').forEach(link => {
+      link.addEventListener('click', closeMobileMenu);
+    });
+
+    // Close when clicking outside the header
+    document.addEventListener('click', (e) => {
+      if (mobileNav.classList.contains('open') && !e.target.closest('.site-header')) {
+        closeMobileMenu();
+      }
+    });
+
+    // Reset state if viewport grows back to desktop width
+    window.matchMedia('(min-width: 993px)').addEventListener('change', (e) => {
+      if (e.matches) closeMobileMenu();
+    });
+  }
 });

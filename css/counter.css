@@ -641,3 +641,92 @@ body {
   font-size: 3rem;
   margin-bottom: 0.75rem;
 }
+
+/* ==========================================================================
+   Mobile & Tablet Responsiveness (Counter Desk)
+   ========================================================================== */
+
+/* Icon-only buttons (theme / language toggles) */
+.c-btn.icon-only {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .counter-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .counter-controls {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  /* Status pill stays on its own row, controls below with touch targets */
+  .live-pill {
+    order: -1;
+  }
+
+  .c-btn {
+    min-height: 44px;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .c-btn.icon-only {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
+  .orders-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .counter-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .counter-main {
+    padding: 0 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .counter-title-wrap h1 {
+    font-size: 1rem;
+  }
+
+  .order-card {
+    padding: 1rem;
+  }
+
+  /* Larger tap targets for card action buttons */
+  .btn-status-ready,
+  .btn-status-complete,
+  .order-actions-bar button {
+    min-height: 44px;
+    padding: 0.7rem 0.5rem;
+  }
+
+  /* Touch feedback (hover is unavailable on touch screens) */
+  .c-btn:active,
+  .order-card button:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
+}

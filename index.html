@@ -50,12 +50,13 @@
       </div>
 
       <div class="top-actions">
-        <span style="font-size: 0.85rem; color: var(--text-secondary);">📍 পুঞ্চা (কৃষি ফার্মের বিপরীতে)</span>
-        <button id="themeToggleBtn" class="lang-switch-btn theme-toggle-btn" type="button" aria-label="Change Theme">
-          <span>☀️</span> <strong>Light</strong>
+        <span class="top-location-label">📍 পুঞ্চা (কৃষি ফার্মের বিপরীতে)</span>
+        <button id="themeToggleBtn" class="lang-switch-btn icon-only theme-toggle-btn" type="button" aria-label="Change Theme">
+          <span aria-hidden="true">☀️</span>
         </button>
-        <button id="langToggleBtn" class="lang-switch-btn" type="button" aria-label="Toggle Language">
-          <span>🌐</span> <strong id="langLabel">Switch to English</strong>
+        <button id="langToggleBtn" class="lang-switch-btn icon-only" type="button" aria-label="Toggle Language">
+          <span aria-hidden="true" id="langIcon">🌐</span>
+          <span class="sr-only" id="langLabel">Switch to English</span>
         </button>
       </div>
     </div>
@@ -87,7 +88,23 @@
         target="_blank" rel="noopener" class="header-cta-btn" id="headerWhatsAppBtn">
         <span>💬</span> <span>হোয়াটসঅ্যাপ মেসেজ</span>
       </a>
+
+      <button type="button" class="menu-toggle-btn" id="menuToggleBtn" aria-label="Open Menu" aria-expanded="false" aria-controls="mainNav">
+        <span></span><span></span><span></span>
+      </button>
     </div>
+
+    <!-- Mobile Slide-down Navigation -->
+    <nav aria-label="Mobile Navigation" class="mobile-nav" id="mobileNav">
+      <ul class="mobile-nav-links">
+        <li><a href="#home" data-i18n="navHome">হোম</a></li>
+        <li><a href="#calculator" data-i18n="navCalculator">প্রিন্ট অর্ডার</a></li>
+        <li><a href="#documents" data-i18n="navDocs">ডকুমেন্ট গাইড</a></li>
+        <li><a href="#services" data-i18n="navServices">সকল সার্ভিস</a></li>
+        <li><a href="#location" data-i18n="navLocation">ঠিকানা ও ম্যাপ</a></li>
+        <li><a href="/counter" target="_blank" rel="noopener" class="mobile-nav-counter">💻 কাউন্টার ডেস্ক</a></li>
+      </ul>
+    </nav>
   </header>
 
   <main>

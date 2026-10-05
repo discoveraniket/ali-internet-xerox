@@ -376,7 +376,10 @@ document.addEventListener('DOMContentLoaded', () => {
   function setLang(lang) {
     currentLang = lang;
     localStorage.setItem('ali_counter_lang', lang);
-    langToggleBtn.textContent = I18N[lang].switchLang;
+    // Icon-only button: show the language you'd switch TO, keep full text for a11y
+    langToggleBtn.textContent = lang === 'bn' ? 'EN' : 'বাং';
+    langToggleBtn.setAttribute('aria-label', I18N[lang].switchLang);
+    langToggleBtn.title = I18N[lang].switchLang;
 
     document.querySelectorAll('[data-ci18n]').forEach(el => {
       const key = el.getAttribute('data-ci18n');

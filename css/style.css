@@ -1873,6 +1873,123 @@ html:not([data-theme]) .roadmap-banner {
 }
 
 /* ==========================================================================
+   Mobile Navigation (Hamburger + Slide-down Menu) & Icon-only Buttons
+   ========================================================================== */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.lang-switch-btn.icon-only {
+  width: 40px;
+  height: 40px;
+  padding: 0;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+.top-location-label {
+  font-size: 0.85rem;
+  color: var(--text-secondary);
+}
+
+.menu-toggle-btn {
+  display: none;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  gap: 5px;
+  width: 44px;
+  height: 44px;
+  background: var(--glass-tint);
+  border: 1px solid var(--border-subtle);
+  border-radius: 10px;
+  cursor: pointer;
+  padding: 0;
+  transition: var(--transition);
+}
+
+.menu-toggle-btn span {
+  display: block;
+  width: 20px;
+  height: 2px;
+  border-radius: 2px;
+  background: var(--text-main);
+  transition: transform 0.25s ease, opacity 0.25s ease;
+}
+
+.menu-toggle-btn:hover {
+  border-color: var(--accent-cyan);
+}
+
+.menu-toggle-btn[aria-expanded="true"] span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+
+.menu-toggle-btn[aria-expanded="true"] span:nth-child(2) {
+  opacity: 0;
+}
+
+.menu-toggle-btn[aria-expanded="true"] span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
+
+.mobile-nav {
+  display: none;
+  border-top: 1px solid var(--border-subtle);
+  background: var(--bg-glass);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  overflow: hidden;
+  max-height: 0;
+  transition: max-height 0.3s ease;
+}
+
+.mobile-nav.open {
+  max-height: 420px;
+}
+
+.mobile-nav-links {
+  list-style: none;
+  margin: 0;
+  padding: 0.5rem 1.25rem 1rem;
+  display: flex;
+  flex-direction: column;
+}
+
+.mobile-nav-links a {
+  display: block;
+  padding: 0.85rem 0.5rem;
+  min-height: 44px;
+  color: var(--text-main);
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 600;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.mobile-nav-links li:last-child a {
+  border-bottom: none;
+}
+
+.mobile-nav-links a:active {
+  color: var(--accent-cyan);
+}
+
+.mobile-nav-counter {
+  color: var(--sky-accent) !important;
+}
+
+/* ==========================================================================
    Responsive Media Queries
    ========================================================================== */
 @media (max-width: 992px) {
@@ -1896,7 +2013,7 @@ html:not([data-theme]) .roadmap-banner {
 
 @media (max-width: 768px) {
   .hero-title {
-    font-size: 2.1rem;
+    font-size: clamp(1.7rem, 7vw, 2.1rem);
   }
 
   .mobile-sticky-bar {
@@ -1915,11 +2032,113 @@ html:not([data-theme]) .roadmap-banner {
     grid-template-columns: 1fr;
   }
 
-  .top-notice-bar {
-    text-align: center;
+  /* Top notice bar: single tidy row — status pill left, icon buttons right */
+  .top-bar-content {
+    flex-wrap: nowrap;
+    gap: 0.5rem;
+    justify-content: space-between;
   }
 
-  .top-bar-content {
-    justify-content: center;
+  .top-notice-bar {
+    text-align: left;
+  }
+
+  .shop-status-pill {
+    min-width: 0;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    padding: 0.3rem 0.6rem;
+  }
+
+  .top-location-label {
+    display: none;
+  }
+
+  .top-actions {
+    gap: 0.5rem;
+    flex-shrink: 0;
+  }
+
+  /* Touch-friendly tap targets (WCAG 44px minimum) */
+  .lang-switch-btn.icon-only {
+    width: 44px;
+    height: 44px;
+  }
+
+  /* Active-state feedback for touch devices (hover doesn't exist on mobile) */
+  .btn:active,
+  .lang-switch-btn:active,
+  .header-cta-btn:active,
+  .menu-toggle-btn:active {
+    transform: scale(0.96);
+    opacity: 0.9;
+  }
+}
+
+/* ==========================================================================
+   Mobile Navigation Activation (hamburger + slide-down menu)
+   ========================================================================== */
+@media (max-width: 992px) {
+  .nav-container {
+    position: relative;
+    flex-wrap: wrap;
+  }
+
+  .menu-toggle-btn {
+    display: flex;
+  }
+
+  .mobile-nav {
+    display: block;
+  }
+
+  .brand-wrapper {
+    flex: 1 1 auto;
+    min-width: 0;
+  }
+
+  .brand-text h1 {
+    font-size: clamp(0.95rem, 4.2vw, 1.2rem);
+  }
+}
+
+@media (max-width: 576px) {
+  /* Compact header CTA: WhatsApp icon only */
+  .header-cta-btn {
+    order: 3;
+    padding: 0.55rem 0.7rem;
+  }
+
+  .header-cta-btn span:last-child {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    margin: -1px;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+  }
+
+  .brand-logo-icon {
+    width: 38px;
+    height: 38px;
+    font-size: 1.15rem;
+  }
+
+  .brand-text p {
+    display: none;
+  }
+
+  .nav-container {
+    padding: 0.6rem 1rem;
+  }
+
+  section[class*="-section"],
+  .hero-section {
+    padding-left: 1rem;
+    padding-right: 1rem;
   }
 }
