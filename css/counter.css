@@ -28,6 +28,16 @@
   --c-tint-soft: rgba(255, 255, 255, 0.03);
   --c-dash: rgba(255, 255, 255, 0.06);
   --c-badge-dark: rgba(0, 0, 0, 0.35);
+
+  /* Status accent foregrounds (dark defaults; light overridden below) */
+  --c-emerald-fg: #34d399;
+  --c-amber-fg: #fbbf24;
+  --c-sky-fg: #38bdf8;
+  --c-violet-fg: #c084fc;
+  --c-green-fg: #4ade80;
+  --c-muted-fg: #94a3b8;
+  --c-complete-fg: #e2e8f0;
+  --c-card-hover-border: rgba(56, 189, 248, 0.4);
 }
 
 /* Light is the default theme: no-JS / pre-script fallback when OS isn't dark */
@@ -79,19 +89,39 @@ html[data-theme="light"] .tab-btn.active {
   border-color: #0284c7;
 }
 
-html[data-theme="light"] .badge-completed {
+/* ==========================================================================
+   Shared light overrides — applied for BOTH explicit light (html[data-theme])
+   and the no-JS fallback (OS prefers light & no data-theme attribute).
+   ========================================================================== */
+html[data-theme="light"],
+html:not([data-theme]) {
+  --c-emerald-fg: #047857;
+  --c-amber-fg: #b45309;
+  --c-sky-fg: #0369a1;
+  --c-violet-fg: #7e22ce;
+  --c-green-fg: #15803d;
+  --c-muted-fg: #475569;
+  --c-complete-fg: #334155;
+  --c-card-hover-border: rgba(2, 132, 199, 0.4);
+}
+
+html[data-theme="light"] .badge-completed,
+html:not([data-theme]) .badge-completed {
   color: #475569;
 }
 
-html[data-theme="light"] .btn-status-complete {
+html[data-theme="light"] .btn-status-complete,
+html:not([data-theme]) .btn-status-complete {
   color: #334155;
 }
 
-html[data-theme="light"] .btn-whatsapp {
+html[data-theme="light"] .btn-whatsapp,
+html:not([data-theme]) .btn-whatsapp {
   color: #15803d;
 }
 
-html[data-theme="light"] .order-card:hover {
+html[data-theme="light"] .order-card:hover,
+html:not([data-theme]) .order-card:hover {
   box-shadow: 0 8px 24px rgba(15, 23, 42, 0.15);
 }
 
@@ -178,7 +208,7 @@ body {
   font-weight: 700;
   background: rgba(16, 185, 129, 0.15);
   border: 1px solid rgba(16, 185, 129, 0.3);
-  color: #34d399;
+  color: var(--c-emerald-fg);
 }
 
 .live-dot {
@@ -258,22 +288,22 @@ body {
 
 .metric-pending .metric-icon-box {
   background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  color: var(--c-amber-fg);
 }
 
 .metric-ready .metric-icon-box {
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: var(--c-emerald-fg);
 }
 
 .metric-total .metric-icon-box {
   background: rgba(56, 189, 248, 0.15);
-  color: #38bdf8;
+  color: var(--c-sky-fg);
 }
 
 .metric-revenue .metric-icon-box {
   background: rgba(168, 85, 247, 0.15);
-  color: #c084fc;
+  color: var(--c-violet-fg);
 }
 
 .metric-data h3 {
@@ -355,7 +385,7 @@ body {
 }
 
 .order-card:hover {
-  border-color: rgba(56, 189, 248, 0.4);
+  border-color: var(--c-card-hover-border);
   transform: translateY(-2px);
   box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3);
 }
@@ -383,7 +413,7 @@ body {
 .order-token {
   font-size: 1.4rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: var(--c-sky-fg);
   letter-spacing: -0.02em;
 }
 
@@ -404,19 +434,19 @@ body {
 
 .badge-pending {
   background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  color: var(--c-amber-fg);
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
 .badge-ready {
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: var(--c-emerald-fg);
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .badge-completed {
   background: rgba(148, 163, 184, 0.15);
-  color: #94a3b8;
+  color: var(--c-muted-fg);
   border: 1px solid rgba(148, 163, 184, 0.3);
 }
 
@@ -470,7 +500,7 @@ body {
 .btn-whatsapp {
   background: rgba(37, 211, 102, 0.15);
   border-color: rgba(37, 211, 102, 0.3);
-  color: #4ade80;
+  color: var(--c-green-fg);
 }
 
 .order-specs-list {
@@ -507,7 +537,7 @@ body {
 .order-amount {
   font-size: 1.3rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: var(--c-sky-fg);
 }
 
 .payment-tag {
@@ -519,13 +549,13 @@ body {
 
 .pay-upi {
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: var(--c-emerald-fg);
   border: 1px solid rgba(16, 185, 129, 0.3);
 }
 
 .pay-cash {
   background: rgba(245, 158, 11, 0.15);
-  color: #fbbf24;
+  color: var(--c-amber-fg);
   border: 1px solid rgba(245, 158, 11, 0.3);
 }
 
@@ -565,7 +595,7 @@ body {
 
 .btn-status-ready {
   background: rgba(16, 185, 129, 0.15);
-  color: #34d399;
+  color: var(--c-emerald-fg);
   border: 1px solid rgba(16, 185, 129, 0.3);
   padding: 0.6rem;
   border-radius: 8px;
@@ -582,7 +612,7 @@ body {
 
 .btn-status-complete {
   background: rgba(148, 163, 184, 0.15);
-  color: #e2e8f0;
+  color: var(--c-complete-fg);
   border: 1px solid rgba(148, 163, 184, 0.3);
   padding: 0.6rem;
   border-radius: 8px;
@@ -610,4 +640,93 @@ body {
 .empty-queue-icon {
   font-size: 3rem;
   margin-bottom: 0.75rem;
+}
+
+/* ==========================================================================
+   Mobile & Tablet Responsiveness (Counter Desk)
+   ========================================================================== */
+
+/* Icon-only buttons (theme / language toggles) */
+.c-btn.icon-only {
+  width: 42px;
+  height: 42px;
+  padding: 0;
+  justify-content: center;
+  align-items: center;
+  font-size: 0.95rem;
+  font-weight: 700;
+  line-height: 1;
+}
+
+@media (max-width: 900px) {
+  .counter-nav {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 0.75rem;
+  }
+
+  .counter-controls {
+    flex-wrap: wrap;
+    gap: 0.6rem;
+  }
+
+  /* Status pill stays on its own row, controls below with touch targets */
+  .live-pill {
+    order: -1;
+  }
+
+  .c-btn {
+    min-height: 44px;
+    padding: 0.55rem 0.9rem;
+  }
+
+  .c-btn.icon-only {
+    width: 44px;
+    height: 44px;
+    padding: 0;
+  }
+
+  .orders-grid {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
+
+  .metrics-grid {
+    grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+    gap: 0.75rem;
+  }
+}
+
+@media (max-width: 600px) {
+  .counter-header {
+    padding: 0.75rem 1rem;
+  }
+
+  .counter-main {
+    padding: 0 0.85rem;
+    margin-top: 1rem;
+  }
+
+  .counter-title-wrap h1 {
+    font-size: 1rem;
+  }
+
+  .order-card {
+    padding: 1rem;
+  }
+
+  /* Larger tap targets for card action buttons */
+  .btn-status-ready,
+  .btn-status-complete,
+  .order-actions-bar button {
+    min-height: 44px;
+    padding: 0.7rem 0.5rem;
+  }
+
+  /* Touch feedback (hover is unavailable on touch screens) */
+  .c-btn:active,
+  .order-card button:active {
+    transform: scale(0.97);
+    opacity: 0.9;
+  }
 }
