@@ -45,6 +45,139 @@
   --shadow-emerald-glow: 0 0 25px rgba(16, 185, 129, 0.25);
 
   --transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+
+  /* Theme-adaptive tokens (overridden per theme below) */
+  --glass-tint: rgba(255, 255, 255, 0.08);
+  --glass-tint-hover: rgba(255, 255, 255, 0.15);
+  --glass-tint-soft: rgba(255, 255, 255, 0.05);
+  --border-strong: rgba(255, 255, 255, 0.2);
+  --overlay-bg: rgba(4, 8, 16, 0.72);
+  --ambient-blob-opacity: 1;
+}
+
+/* Light is the default theme: when js/theme.js hasn't run yet (or JS is off),
+   and the OS doesn't request dark, render light. */
+@media (prefers-color-scheme: light) {
+  html:not([data-theme]) {
+    --bg-primary: #f4f7fb;
+    --bg-secondary: #e8eef5;
+    --bg-surface: #ffffff;
+    --bg-surface-elevated: #dbe4ee;
+    --bg-glass: rgba(255, 255, 255, 0.78);
+    --bg-glass-card: rgba(255, 255, 255, 0.85);
+    --border-subtle: rgba(15, 23, 42, 0.10);
+    --text-main: #0f172a;
+    --text-secondary: #475569;
+    --text-muted: #64748b;
+    --glass-tint: rgba(15, 23, 42, 0.06);
+    --glass-tint-hover: rgba(15, 23, 42, 0.12);
+    --glass-tint-soft: rgba(15, 23, 42, 0.04);
+    --border-strong: rgba(15, 23, 42, 0.18);
+    --overlay-bg: rgba(15, 23, 42, 0.45);
+    --ambient-blob-opacity: 0.55;
+    color-scheme: light;
+  }
+}
+
+/* ==========================================================================
+   Light Theme — the DEFAULT (:root above is the dark palette)
+   Applied via html[data-theme="light"], which js/theme.js sets before
+   first paint. Falls back to light when no preference is stored.
+   ========================================================================== */
+html[data-theme="light"] {
+  --bg-primary: #f4f7fb;
+  --bg-secondary: #e8eef5;
+  --bg-surface: #ffffff;
+  --bg-surface-elevated: #dbe4ee;
+  --bg-glass: rgba(255, 255, 255, 0.78);
+  --bg-glass-card: rgba(255, 255, 255, 0.85);
+
+  --border-subtle: rgba(15, 23, 42, 0.10);
+  --border-glow: rgba(2, 132, 199, 0.35);
+
+  --text-main: #0f172a;
+  --text-secondary: #475569;
+  --text-muted: #64748b;
+
+  --accent-cyan: #0891b2;
+  --accent-emerald: #059669;
+  --accent-blue: #2563eb;
+  --accent-amber: #d97706;
+  --accent-rose: #e11d48;
+
+  --whatsapp-color: #22c55e;
+  --whatsapp-hover: #16a34a;
+  --call-color: #2563eb;
+
+  --shadow-sm: 0 2px 8px rgba(15, 23, 42, 0.10);
+  --shadow-md: 0 8px 24px rgba(15, 23, 42, 0.14);
+  --shadow-glow: 0 0 25px rgba(8, 145, 178, 0.18);
+  --shadow-emerald-glow: 0 0 25px rgba(5, 150, 105, 0.18);
+
+  /* Theme-adaptive tokens */
+  --glass-tint: rgba(15, 23, 42, 0.06);
+  --glass-tint-hover: rgba(15, 23, 42, 0.12);
+  --glass-tint-soft: rgba(15, 23, 42, 0.04);
+  --border-strong: rgba(15, 23, 42, 0.18);
+  --overlay-bg: rgba(15, 23, 42, 0.45);
+  --ambient-blob-opacity: 0.55;
+}
+
+/* Explicit dark selection (also what 'system' resolves to on dark OS) */
+html[data-theme="dark"] {
+  color-scheme: dark;
+}
+
+/* --- Light theme targeted overrides for hard-coded dark accents --- */
+html[data-theme="light"] .ambient-blob-1,
+html[data-theme="light"] .ambient-blob-2 {
+  opacity: var(--ambient-blob-opacity);
+}
+
+html[data-theme="light"] .brand-text h1,
+html[data-theme="light"] a[href="/counter"] {
+  /* keep readable deep tones instead of neon sky-blue */
+}
+
+html[data-theme="light"] {
+  --sky-accent: #0284c7;
+  --call-fg: #1d4ed8;
+}
+html:not([data-theme="light"]) {
+  --sky-accent: #38bdf8;
+  --call-fg: #60a5fa;
+}
+
+/* Smooth cross-fade when switching themes */
+body, .site-header, .top-notice-bar, .doc-card, .service-card, .token-modal-card {
+  transition: background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+
+html[data-theme="light"] .stat-value-highlight,
+html[data-theme="light"] .section-badge,
+html[data-theme="light"] .doc-tag-hot,
+html[data-theme="light"] .btn-bar-call {
+  color: #0369a1;
+}
+
+html[data-theme="light"] .hero-title-gradient {
+  background: linear-gradient(135deg, #0891b2 0%, #059669 50%, #d97706 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+html[data-theme="light"] .scroll-progress-overlay,
+html[data-theme="light"] .services-section {
+  background: linear-gradient(180deg, rgba(15, 23, 42, 0.04) 0%, transparent 100%);
+}
+
+html[data-theme="light"] .token-modal-card {
+  box-shadow: 0 15px 45px rgba(15, 23, 42, 0.25);
+}
+
+html[data-theme="light"] .pill-toggle-btn.active,
+html[data-theme="light"] .filter-btn.active {
+  box-shadow: 0 4px 12px rgba(2, 132, 199, 0.25);
 }
 
 /* Base Reset */
@@ -176,7 +309,7 @@ body.lang-bn {
 }
 
 .lang-switch-btn {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--glass-tint);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   padding: 0.3rem 0.8rem;
@@ -190,7 +323,7 @@ body.lang-bn {
 }
 
 .lang-switch-btn:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--glass-tint-hover);
   border-color: var(--accent-cyan);
 }
 
@@ -305,7 +438,7 @@ body.lang-bn {
   background: rgba(6, 182, 212, 0.12);
   border: 1px solid rgba(6, 182, 212, 0.3);
   border-radius: var(--radius-full);
-  color: #38bdf8;
+  color: var(--sky-accent);
   font-size: 0.85rem;
   font-weight: 600;
   margin-bottom: 1.25rem;
@@ -320,7 +453,7 @@ body.lang-bn {
 }
 
 .hero-title .gradient-text {
-  background: linear-gradient(135deg, #38bdf8 0%, #34d399 50%, #f59e0b 100%);
+  background: linear-gradient(135deg, var(--sky-accent) 0%, #34d399 50%, #f59e0b 100%);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
 }
@@ -367,14 +500,14 @@ body.lang-bn {
 }
 
 .btn-secondary {
-  background: rgba(255, 255, 255, 0.08);
+  background: var(--glass-tint);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
   backdrop-filter: blur(10px);
 }
 
 .btn-secondary:hover {
-  background: rgba(255, 255, 255, 0.15);
+  background: var(--glass-tint-hover);
   border-color: var(--accent-cyan);
   transform: translateY(-2px);
 }
@@ -449,13 +582,13 @@ body.lang-bn {
 }
 
 .shop-img-badge {
-  background: rgba(0, 0, 0, 0.65);
+  background: var(--overlay-bg);
   backdrop-filter: blur(8px);
   border: 1px solid var(--border-subtle);
   padding: 0.35rem 0.8rem;
   border-radius: var(--radius-full);
   font-size: 0.8rem;
-  color: #38bdf8;
+  color: var(--sky-accent);
   display: flex;
   align-items: center;
   gap: 0.4rem;
@@ -506,7 +639,7 @@ body.lang-bn {
 
 .action-call {
   background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
+  color: var(--call-fg, #60a5fa);
   border: 1px solid rgba(59, 130, 246, 0.3);
 }
 
@@ -625,7 +758,7 @@ body.lang-bn {
 }
 
 .stepper-btn:hover {
-  background: rgba(255, 255, 255, 0.1);
+  background: var(--glass-tint-hover);
   color: var(--accent-cyan);
 }
 
@@ -664,7 +797,7 @@ body.lang-bn {
 .calc-price-amount {
   font-size: 2rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: var(--sky-accent);
 }
 
 .calc-note {
@@ -939,7 +1072,7 @@ body.lang-bn {
   display: none;
   position: fixed;
   inset: 0;
-  background: rgba(0, 0, 0, 0.75);
+  background: var(--overlay-bg);
   backdrop-filter: blur(10px);
   -webkit-backdrop-filter: blur(10px);
   z-index: 1000;
@@ -987,7 +1120,7 @@ body.lang-bn {
 .token-id-badge {
   font-size: 2.2rem;
   font-weight: 800;
-  color: #38bdf8;
+  color: var(--sky-accent);
   letter-spacing: -0.02em;
   margin: 0.5rem 0;
 }
@@ -1060,13 +1193,13 @@ body.lang-bn {
 
 .filter-btn:hover {
   color: var(--text-main);
-  border-color: rgba(255, 255, 255, 0.2);
+  border-color: var(--border-strong);
 }
 
 .filter-btn.active {
   background: linear-gradient(135deg, #0284c7 0%, #0369a1 100%);
   color: white;
-  border-color: #38bdf8;
+  border-color: var(--sky-accent);
   box-shadow: 0 4px 12px rgba(2, 132, 199, 0.35);
 }
 
@@ -1135,7 +1268,7 @@ body.lang-bn {
 .doc-card-icon {
   font-size: 1.8rem;
   line-height: 1;
-  background: rgba(255, 255, 255, 0.05);
+  background: var(--glass-tint-soft);
   padding: 0.6rem;
   border-radius: var(--radius-sm);
   border: 1px solid var(--border-subtle);
@@ -1161,7 +1294,7 @@ body.lang-bn {
   font-weight: 700;
   text-transform: uppercase;
   letter-spacing: 0.05em;
-  color: #38bdf8;
+  color: var(--sky-accent);
   margin-bottom: 0.75rem;
   display: flex;
   align-items: center;
@@ -1178,7 +1311,7 @@ body.lang-bn {
   font-size: 0.88rem;
   color: var(--text-main);
   padding: 0.45rem 0;
-  border-bottom: 1px solid rgba(255, 255, 255, 0.04);
+  border-bottom: 1px solid var(--glass-tint-soft);
   display: flex;
   align-items: flex-start;
   gap: 0.5rem;
@@ -1308,7 +1441,7 @@ body.lang-bn {
   padding: 0.15rem 0.5rem;
   border-radius: var(--radius-full);
   background: rgba(56, 189, 248, 0.12);
-  color: #38bdf8;
+  color: var(--sky-accent);
   border: 1px solid rgba(56, 189, 248, 0.25);
 }
 
@@ -1358,7 +1491,7 @@ body.lang-bn {
   height: 38px;
   border-radius: 10px;
   background: rgba(6, 182, 212, 0.12);
-  color: #38bdf8;
+  color: var(--sky-accent);
   display: flex;
   align-items: center;
   justify-content: center;
@@ -1566,7 +1699,7 @@ body.lang-bn {
 .footer-bottom {
   text-align: center;
   padding-top: 2rem;
-  border-top: 1px solid rgba(255, 255, 255, 0.05);
+  border-top: 1px solid var(--glass-tint-soft);
   font-size: 0.8rem;
 }
 
@@ -1609,7 +1742,7 @@ body.lang-bn {
 
 .btn-bar-call {
   background: rgba(59, 130, 246, 0.15);
-  color: #60a5fa;
+  color: var(--call-fg, #60a5fa);
   border: 1px solid rgba(59, 130, 246, 0.25);
 }
 
@@ -1625,7 +1758,7 @@ body.lang-bn {
 
 .btn-bar-docs {
   background: rgba(6, 182, 212, 0.15);
-  color: #38bdf8;
+  color: var(--sky-accent);
   border: 1px solid rgba(6, 182, 212, 0.25);
 }
 

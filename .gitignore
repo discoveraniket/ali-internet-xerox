@@ -1,7 +1,1 @@
-node_modules/
-.DS_Store
-Thumbs.db
-uploads/*
-!uploads/.gitkeep
-data/orders.json
-!data/.gitkeep
+(empty)
