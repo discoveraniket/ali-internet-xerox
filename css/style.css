@@ -2513,3 +2513,149 @@ html:not([data-theme]) .btn-roadmap-action:hover {
   transition: color 0.3s ease;
 }
 
+/* ==========================================================================
+   Dynamic Hero Urgent Notice Banner
+   ========================================================================== */
+
+.hero-notice-banner {
+  background: linear-gradient(90deg, rgba(234, 88, 12, 0.95) 0%, rgba(220, 38, 38, 0.98) 50%, rgba(217, 119, 6, 0.95) 100%);
+  color: #ffffff;
+  padding: 0.75rem 1rem;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  box-shadow: 0 4px 20px rgba(220, 38, 38, 0.35);
+  animation: bannerFadeIn 0.35s ease-out;
+  position: relative;
+  z-index: 95;
+}
+
+@keyframes bannerFadeIn {
+  from { opacity: 0; transform: translateY(-10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-notice-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+.hero-notice-pill {
+  background: rgba(0, 0, 0, 0.35);
+  border: 1px solid rgba(255, 255, 255, 0.35);
+  padding: 0.25rem 0.75rem;
+  border-radius: 9999px;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  white-space: nowrap;
+}
+
+.hero-notice-text {
+  font-size: 0.92rem;
+  font-weight: 700;
+  flex: 1;
+  min-width: 250px;
+  line-height: 1.4;
+}
+
+.hero-notice-actions {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.hero-notice-cta {
+  background: #ffffff;
+  color: #b91c1c;
+  padding: 0.35rem 0.9rem;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 800;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  white-space: nowrap;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+.hero-notice-cta:hover {
+  background: #fef2f2;
+  transform: translateY(-1px);
+}
+
+.hero-notice-dismiss {
+  background: rgba(0, 0, 0, 0.25);
+  border: 1px solid rgba(255, 255, 255, 0.3);
+  color: #ffffff;
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.85rem;
+  font-weight: 700;
+  transition: all 0.2s ease;
+}
+
+.hero-notice-dismiss:hover {
+  background: rgba(0, 0, 0, 0.5);
+  transform: scale(1.08);
+}
+
+/* Developer Info in Footer */
+.footer-developer {
+  margin-top: 0.6rem;
+  font-size: 0.85rem;
+  color: var(--text-muted);
+}
+
+.footer-developer a {
+  color: var(--accent-cyan);
+  text-decoration: none;
+  font-weight: 700;
+  transition: color 0.2s ease;
+}
+
+.footer-developer a:hover {
+  text-decoration: underline;
+  color: var(--accent-emerald);
+}
+
+/* ==========================================================================
+   Predefined Color Themes for Main Site
+   ========================================================================== */
+
+/* 1. Bengal Gold & Saffron */
+html[data-color-theme="bengal-gold"] {
+  --accent-cyan: #f59e0b;
+  --accent-emerald: #eab308;
+  --accent-blue: #f97316;
+  --border-glow: rgba(245, 158, 11, 0.35);
+  --shadow-glow: 0 0 25px rgba(245, 158, 11, 0.25);
+  --notice-bar-bg: linear-gradient(90deg, #1e1b4b 0%, #1e293b 50%, #78350f 100%);
+}
+
+/* 2. Krishi Forest Green */
+html[data-color-theme="krishi-green"] {
+  --accent-cyan: #10b981;
+  --accent-emerald: #34d399;
+  --accent-blue: #059669;
+  --border-glow: rgba(16, 185, 129, 0.35);
+  --shadow-glow: 0 0 25px rgba(16, 185, 129, 0.25);
+  --notice-bar-bg: linear-gradient(90deg, #022c22 0%, #064e3b 50%, #047857 100%);
+}
+
+/* 3. Crimson Ruby */
+html[data-color-theme="crimson-ruby"] {
+  --accent-cyan: #f43f5e;
+  --accent-emerald: #fb7185;
+  --accent-blue: #e11d48;
+  --border-glow: rgba(244, 63, 94, 0.35);
+  --shadow-glow: 0 0 25px rgba(244, 63, 94, 0.25);
+  --notice-bar-bg: linear-gradient(90deg, #4c0519 0%, #18181b 50%, #881337 100%);
+}
+
+

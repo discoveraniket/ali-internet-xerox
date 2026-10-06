@@ -1,0 +1,42 @@
+{
+  "theme": "crimson-ruby",
+  "shopPhoto": "/assets/shop-front.jpeg",
+  "contact": {
+    "phone": "9734573323",
+    "phoneFormatted": "+91 97345 73323",
+    "whatsapp": "9734573323",
+    "email": "allinternetpuncha@gmail.com",
+    "landmark": {
+      "bn": "কৃষি ফার্মের বিপরীতে, পুঞ্চা, পুরুলিয়া",
+      "en": "Opposite Krishi Farm, Puncha, Purulia"
+    },
+    "hours": {
+      "bn": "সোম – রবি: সকাল ৮:০০ টা – রাত ৯:০০ টা",
+      "en": "Monday – Sunday: 8:00 AM – 9:00 PM"
+    }
+  },
+  "heroBanner": {
+    "active": false,
+    "tag": {
+      "bn": "🌾 পিএম কিষাণ / কৃষক বন্ধু",
+      "en": "Important Notice"
+    },
+    "message": {
+      "bn": "পিএম কিষাণ সম্মান নিধি এবং কৃষক বন্ধু আবেদন চলছে! দোকানে যোগাযোগ করুন।",
+      "en": "PM-Kisan & Krishak Bandhu registration is open! Visit the shop."
+    },
+    "actionUrl": "#documents",
+    "actionLabel": {
+      "bn": "কাগজপত্র দেখুন",
+      "en": "View Details"
+    }
+  },
+  "pricing": {
+    "bwXerox": 2,
+    "colorPrint": 10,
+    "photoPassport": 40,
+    "lamination": 20,
+    "spiralBinding": 35,
+    "rubberStamp": 120
+  }
+}

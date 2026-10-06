@@ -187,6 +187,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footStamp: "Custom Rubber Stamp Making",
       footPan: "Instant PAN Card (e-PAN)",
       footerCopyright: "© 2026 Ali Internet & Xerox. Built for Puncha, Purulia.",
+      footerDev: "Designed & Developed by <a href='https://github.com/discoveraniket' target='_blank' rel='noopener'>Aniket Sarkar</a> • Tech Partner",
       barCall: "Call",
       barPrint: "Print Desk",
       barWhatsApp: "WhatsApp",
@@ -310,6 +311,7 @@ document.addEventListener('DOMContentLoaded', () => {
       footStamp: "রবার স্ট্যাম্প তৈরি (Official Seals)",
       footPan: "তাৎক্ষণিক প্যান কার্ড (e-PAN)",
       footerCopyright: "© ২০২৬ আলি ইন্টারনেট এন্ড জেরক্স। পুঞ্চা, পুরুলিয়া।",
+      footerDev: "ডিজাইন ও ডেভেলপমেন্ট: <a href='https://github.com/discoveraniket' target='_blank' rel='noopener'>অনিকেত সরকার (Aniket Sarkar)</a> • Tech Partner",
       barCall: "কল",
       barPrint: "প্রিন্ট জমা",
       barWhatsApp: "হোয়াটসঅ্যাপ",
@@ -352,7 +354,11 @@ document.addEventListener('DOMContentLoaded', () => {
     document.querySelectorAll('[data-i18n]').forEach(el => {
       const key = el.getAttribute('data-i18n');
       if (I18N[lang][key]) {
-        el.textContent = I18N[lang][key];
+        if (key === 'footerDev') {
+          el.innerHTML = I18N[lang][key];
+        } else {
+          el.textContent = I18N[lang][key];
+        }
       }
     });
 
@@ -413,11 +419,13 @@ document.addEventListener('DOMContentLoaded', () => {
     let subtotal = copies * baseRate;
 
     // Extra finishing
+    const lamRate = SHOP_DATA.printPricing.lamination?.rate || 20;
+    const spiralRate = SHOP_DATA.printPricing.spiralBinding?.rate || 35;
     if (chkLamination && chkLamination.checked) {
-      subtotal += 20 * copies;
+      subtotal += lamRate * copies;
     }
     if (chkSpiral && chkSpiral.checked) {
-      subtotal += 35;
+      subtotal += spiralRate;
     }
 
     estPriceAmount.textContent = `₹${subtotal}`;
@@ -820,8 +828,108 @@ document.addEventListener('DOMContentLoaded', () => {
     });
   }
 
+  // Dynamic Settings from Counter Panel
+  let remoteSettings = null;
+
+  async function loadRemoteSettings() {
+    try {
+      const res = await fetch('/api/settings');
+      if (res.ok) {
+        const data = await res.json();
+        remoteSettings = data.settings;
+        applyRemoteSettings(remoteSettings);
+      }
+    } catch (e) {
+      console.warn("Could not load dynamic settings, using defaults.", e);
+    }
+  }
+
+  function applyRemoteSettings(settings) {
+    if (!settings) return;
+
+    // 1. Color Theme
+    if (settings.theme) {
+      document.documentElement.setAttribute('data-color-theme', settings.theme);
+    }
+
+    // 2. Pricing override in SHOP_DATA
+    if (settings.pricing && window.SHOP_DATA && window.SHOP_DATA.printPricing) {
+      if (settings.pricing.bwXerox) SHOP_DATA.printPricing.bwXerox.rate = settings.pricing.bwXerox;
+      if (settings.pricing.colorPrint) SHOP_DATA.printPricing.colorPrint.rate = settings.pricing.colorPrint;
+      if (settings.pricing.photoPassport) SHOP_DATA.printPricing.photoPassport.rate = settings.pricing.photoPassport;
+      if (settings.pricing.lamination) SHOP_DATA.printPricing.lamination.rate = settings.pricing.lamination;
+      if (settings.pricing.spiralBinding) SHOP_DATA.printPricing.spiralBinding.rate = settings.pricing.spiralBinding;
+      if (settings.pricing.rubberStamp) SHOP_DATA.printPricing.rubberStamp.rate = settings.pricing.rubberStamp;
+      populateCalculatorOptions();
+      calculatePrintEstimate();
+    }
+
+    // 3. Storefront Photo
+    if (settings.shopPhoto) {
+      const shopFrontImg = document.getElementById('shopFrontImg');
+      if (shopFrontImg) {
+        shopFrontImg.src = settings.shopPhoto;
+      }
+    }
+
+    // 4. Hero Urgent Notice Banner
+    const bannerEl = document.getElementById('heroNoticeBanner');
+    if (bannerEl) {
+      if (settings.heroBanner && settings.heroBanner.active) {
+        const tagEl = document.getElementById('heroNoticeTag');
+        const textEl = document.getElementById('heroNoticeText');
+        const btnEl = document.getElementById('heroNoticeBtn');
+
+        const tagText = settings.heroBanner.tag?.[currentLang] || settings.heroBanner.tag?.bn || '📢 জরুরী বিজ্ঞপ্তি';
+        const msgText = settings.heroBanner.message?.[currentLang] || settings.heroBanner.message?.bn || '';
+        const btnText = settings.heroBanner.actionLabel?.[currentLang] || settings.heroBanner.actionLabel?.bn || 'কাগজপত্র দেখুন';
+        const targetUrl = settings.heroBanner.actionUrl || '#documents';
+
+        if (tagEl) tagEl.textContent = tagText;
+        if (textEl) textEl.textContent = msgText;
+        if (btnEl) {
+          btnEl.textContent = btnText;
+          btnEl.href = targetUrl;
+        }
+
+        bannerEl.style.display = 'block';
+      } else {
+        bannerEl.style.display = 'none';
+      }
+    }
+
+    // 5. Contact phone / WhatsApp / hours
+    if (settings.contact) {
+      if (settings.contact.phone) {
+        SHOP_DATA.phone = settings.contact.phone;
+        const callLinks = document.querySelectorAll('a[href^="tel:"]');
+        callLinks.forEach(a => a.href = `tel:${settings.contact.phone}`);
+      }
+      if (settings.contact.whatsapp) {
+        const waLinks = document.querySelectorAll('a[href*="wa.me/"]');
+        waLinks.forEach(a => {
+          try {
+            const url = new URL(a.href);
+            const currentText = url.searchParams.get('text') || '';
+            a.href = `https://wa.me/91${settings.contact.whatsapp.replace(/[^0-9]/g, '')}?text=${encodeURIComponent(currentText)}`;
+          } catch (err) {}
+        });
+      }
+    }
+  }
+
+  // Dismiss hero notice button
+  const heroNoticeDismiss = document.getElementById('heroNoticeDismiss');
+  if (heroNoticeDismiss) {
+    heroNoticeDismiss.addEventListener('click', () => {
+      const bannerEl = document.getElementById('heroNoticeBanner');
+      if (bannerEl) bannerEl.style.display = 'none';
+    });
+  }
+
   // Initial Run
   setLanguage(currentLang);
+  loadRemoteSettings();
   setInterval(updateShopStatus, 60000); // Check shop status every 1 minute
 
   // 7. Mobile Navigation (Hamburger Menu)

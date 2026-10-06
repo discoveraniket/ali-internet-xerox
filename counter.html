@@ -3,117 +3,504 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>কাউন্টার ডেস্ক | আলি ইন্টারনেট এন্ড জেরক্স (Ali Internet Counter)</title>
+  <title>কাউন্টার ডেস্ক | আলি ইন্টারনেট এন্ড জেরক্স (Ali Internet)</title>
   
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+Bengali:wght@400;600;700;800&family=Outfit:wght@400;600;700;800&display=swap" rel="stylesheet">
   
-  <link rel="stylesheet" href="css/counter.css">
+  <link rel="stylesheet" href="css/counter.css?v=3">
   <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🖨️</text></svg>">
 </head>
 <body>
 
-  <!-- Top Counter Navigation -->
-  <header class="counter-header">
-    <div class="counter-nav">
-      <div class="counter-brand">
-        <div class="counter-logo">🖨️</div>
-        <div class="counter-title-wrap">
-          <h1 data-ci18n="brandTitle">আলি ইন্টারনেট এন্ড জেরক্স — কাউন্টার ডেস্ক</h1>
-          <p data-ci18n="brandSub">পুঞ্চা (কৃষি ফার্মের বিপরীতে) • সেখ ফারুক আলি</p>
+  <!-- =========================================================================
+       1. Operator Login Wall / PIN Screen (Visible when unauthenticated)
+       ========================================================================= -->
+  <div class="login-wall-overlay" id="loginWall">
+    <div class="login-card">
+      <div class="login-badge-icon">🔒</div>
+      <h2 data-ci18n="loginTitle">আলি ইন্টারনেট কাউন্টার সিকিউরিটি</h2>
+      <p class="login-sub" data-ci18n="loginSub">কাউন্টার ডেস্ক ও সেটিংস পরিচালনার জন্য অপারেটর পিন (PIN) দিন</p>
+
+      <div class="pin-display-wrapper">
+        <div class="pin-dots" id="pinDots">
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
+          <span class="pin-dot"></span>
         </div>
+        <div class="login-error-msg" id="loginErrorMsg" style="display: none;"></div>
       </div>
 
-      <div class="counter-controls">
-        <div class="live-pill" id="liveStatusPill">
-          <span class="live-dot"></span>
-          <span>Live Connected</span>
-        </div>
+      <!-- Touch-Friendly Numeric Keypad -->
+      <div class="keypad-grid" id="numericKeypad">
+        <button type="button" class="key-btn" data-val="1">1</button>
+        <button type="button" class="key-btn" data-val="2">2</button>
+        <button type="button" class="key-btn" data-val="3">3</button>
+        <button type="button" class="key-btn" data-val="4">4</button>
+        <button type="button" class="key-btn" data-val="5">5</button>
+        <button type="button" class="key-btn" data-val="6">6</button>
+        <button type="button" class="key-btn" data-val="7">7</button>
+        <button type="button" class="key-btn" data-val="8">8</button>
+        <button type="button" class="key-btn" data-val="9">9</button>
+        <button type="button" class="key-btn key-action" data-val="clear">C</button>
+        <button type="button" class="key-btn" data-val="0">0</button>
+        <button type="button" class="key-btn key-action" data-val="backspace">⌫</button>
+      </div>
 
-        <button type="button" class="c-btn" id="soundToggleBtn">
-          🔊 সতর্কবার্তা: চালু
-        </button>
+      <!-- Password input fallback for keyboard users -->
+      <div class="keyboard-input-wrap">
+        <input type="password" id="manualPinInput" maxlength="12" placeholder="অথবা পাসওয়ার্ড লিখুন" autocomplete="current-password">
+        <button type="button" class="c-btn btn-unlock" id="btnManualUnlock">লগইন করুন</button>
+      </div>
 
-        <button type="button" class="c-btn theme-toggle-btn icon-only" id="themeToggleBtn" aria-label="Change Theme">
-          ☀️
-        </button>
-
-        <button type="button" class="c-btn icon-only" id="langToggleBtn" aria-label="Toggle Language">
-          EN
-        </button>
-
-        <a href="/" target="_blank" rel="noopener" class="c-btn">
-          🌐 মূল ওয়েবসাইট
-        </a>
+      <div class="login-footer-hint">
+        <span>💡 ডিফল্ট কাউন্টার পিন: <strong>7332</strong></span>
       </div>
     </div>
-  </header>
+  </div>
 
-  <main class="counter-main">
-    <!-- Metrics Ribbon -->
-    <section class="metrics-grid">
-      <div class="metric-card metric-pending">
-        <div class="metric-icon-box">⏳</div>
-        <div class="metric-data">
-          <h3 id="statPending">0</h3>
-          <p data-ci18n="statPendingLbl">অপেক্ষমান অর্ডার</p>
+  <!-- =========================================================================
+       2. Authenticated Modern Workstation (Sidebar + Slim Topbar + Canvas)
+       ========================================================================= -->
+  <div class="workstation-wrapper" id="workstationWrapper" style="display: none;">
+    <div class="counter-layout">
+
+      <!-- Left Navigation Sidebar (Desktop fixed, Mobile/Tablet slide drawer) -->
+      <aside class="counter-sidebar" id="counterSidebar">
+        <div class="sidebar-brand">
+          <div class="sidebar-logo">🖨️</div>
+          <div class="sidebar-brand-text">
+            <h2 data-ci18n="brandTitleShort">আলি ইন্টারনেট</h2>
+            <p data-ci18n="brandSubShort">কাউন্টার ডেস্ক • পুঞ্চা</p>
+          </div>
+          <button type="button" class="sidebar-close-btn" id="sidebarCloseBtn" aria-label="Close Sidebar">✕</button>
         </div>
-      </div>
 
-      <div class="metric-card metric-ready">
-        <div class="metric-icon-box">🟢</div>
-        <div class="metric-data">
-          <h3 id="statReady">0</h3>
-          <p data-ci18n="statReadyLbl">ডেলিভারির জন্য রেডি</p>
+        <!-- Main Navigation Links -->
+        <nav class="sidebar-nav" aria-label="Workstation View">
+          <button type="button" class="sidebar-nav-item active" id="tabOrdersView" data-view="orders">
+            <span class="nav-icon">🖨️</span>
+            <span class="nav-label" data-ci18n="navOrders">লাইভ অর্ডার কিউ</span>
+            <span class="sidebar-badge" id="navBadgePending">0</span>
+          </button>
+
+          <button type="button" class="sidebar-nav-item" id="tabSettingsView" data-view="settings">
+            <span class="nav-icon">⚙️</span>
+            <span class="nav-label" data-ci18n="navSettings">সাইট সেটিংস</span>
+          </button>
+        </nav>
+
+        <!-- Sidebar Bottom System Tools -->
+        <div class="sidebar-footer">
+          <div class="sidebar-status-box">
+            <div class="live-pill" id="liveStatusPill">
+              <span class="live-dot"></span>
+              <span>Live Connected</span>
+            </div>
+          </div>
+
+          <div class="sidebar-tools-grid">
+            <button type="button" class="sidebar-tool-btn" id="soundToggleBtn" title="Alert Sound">
+              <span id="soundToggleIcon">🔊</span>
+              <span id="soundToggleText">সাউন্ড: চালু</span>
+            </button>
+
+            <button type="button" class="sidebar-tool-btn theme-toggle-btn" id="themeToggleBtn" title="Change Theme">
+              <span id="themeToggleIcon">☀️</span>
+              <span data-ci18n="themeLabel">থিম</span>
+            </button>
+
+            <button type="button" class="sidebar-tool-btn" id="langToggleBtn" title="Language Toggle">
+              <span>🌐</span>
+              <span id="langToggleText">EN</span>
+            </button>
+
+            <a href="/" target="_blank" rel="noopener" class="sidebar-tool-btn" title="View Main Site">
+              <span>↗️</span>
+              <span data-ci18n="mainSiteLink">মূল সাইট</span>
+            </a>
+          </div>
+
+          <button type="button" class="sidebar-lock-btn" id="logoutBtn" title="Lock Workstation">
+            <span>🔒</span>
+            <span data-ci18n="lockDesk">লক করুন (Lock)</span>
+          </button>
         </div>
-      </div>
+      </aside>
 
-      <div class="metric-card metric-total">
-        <div class="metric-icon-box">📄</div>
-        <div class="metric-data">
-          <h3 id="statToday">0</h3>
-          <p data-ci18n="statTodayLbl">আজকের মোট অর্ডার</p>
+      <!-- Overlay backdrop for mobile drawer -->
+      <div class="sidebar-backdrop" id="sidebarBackdrop"></div>
+
+      <!-- Main Workspace Viewport -->
+      <div class="counter-viewport">
+
+        <!-- Slim Topbar (Header height ~46px) -->
+        <header class="counter-topbar">
+          <div class="topbar-left">
+            <button type="button" class="hamburger-btn" id="hamburgerBtn" aria-label="Open Navigation">
+              <span></span><span></span><span></span>
+            </button>
+            <div class="topbar-view-info">
+              <span class="topbar-view-icon" id="topbarIcon">🖨️</span>
+              <h1 class="topbar-view-title" id="topbarTitle" data-ci18n="navOrders">লাইভ অর্ডার কিউ</h1>
+            </div>
+          </div>
+
+          <div class="topbar-right">
+            <!-- Save Button in Topbar (Appears only on Settings view) -->
+            <button type="button" class="c-btn btn-primary topbar-save-btn" id="topbarSaveBtn" style="display: none;">
+              💾 <span data-ci18n="btnSaveSettings">সেটিংস সেভ করুন</span>
+            </button>
+
+            <!-- Quick lock button for mobile/header -->
+            <button type="button" class="c-btn icon-only topbar-lock-btn" id="topbarLockBtn" title="Lock Desk">
+              🔒
+            </button>
+          </div>
+        </header>
+
+        <!-- Scrollable Workspace Canvas -->
+        <div class="counter-workspace-canvas">
+
+          <!-- ===================================================================
+               VIEW 1: Live Orders Queue Hub
+               =================================================================== -->
+          <main class="canvas-main-view" id="viewOrders">
+            <!-- Metrics Ribbon (Compact) -->
+            <section class="metrics-grid">
+              <div class="metric-card metric-pending">
+                <div class="metric-icon-box">⏳</div>
+                <div class="metric-data">
+                  <h3 id="statPending">0</h3>
+                  <p data-ci18n="statPendingLbl">অপেক্ষমান অর্ডার</p>
+                </div>
+              </div>
+
+              <div class="metric-card metric-ready">
+                <div class="metric-icon-box">🟢</div>
+                <div class="metric-data">
+                  <h3 id="statReady">0</h3>
+                  <p data-ci18n="statReadyLbl">ডেলিভারির জন্য রেডি</p>
+                </div>
+              </div>
+
+              <div class="metric-card metric-total">
+                <div class="metric-icon-box">📄</div>
+                <div class="metric-data">
+                  <h3 id="statToday">0</h3>
+                  <p data-ci18n="statTodayLbl">আজকের মোট অর্ডার</p>
+                </div>
+              </div>
+
+              <div class="metric-card metric-revenue">
+                <div class="metric-icon-box">💰</div>
+                <div class="metric-data">
+                  <h3 id="statRevenue">₹0</h3>
+                  <p data-ci18n="statRevenueLbl">আজকের আনুমানিক আয়</p>
+                </div>
+              </div>
+            </section>
+
+            <!-- Orders Queue & Tabs (Compact) -->
+            <div class="queue-toolbar">
+              <div class="status-tabs">
+                <button type="button" class="tab-btn active" data-status="all">
+                  <span data-ci18n="tabAll">সকল অর্ডার</span>
+                  <span class="tab-badge" id="badgeAll">0</span>
+                </button>
+                <button type="button" class="tab-btn" data-status="pending">
+                  <span data-ci18n="tabPending">অপেক্ষমান</span>
+                  <span class="tab-badge" id="badgePending">0</span>
+                </button>
+                <button type="button" class="tab-btn" data-status="ready">
+                  <span data-ci18n="tabReady">প্রিন্ট রেডি</span>
+                  <span class="tab-badge" id="badgeReady">0</span>
+                </button>
+                <button type="button" class="tab-btn" data-status="completed">
+                  <span data-ci18n="tabCompleted">সম্পন্ন</span>
+                </button>
+              </div>
+            </div>
+
+            <!-- Live Orders Grid -->
+            <section class="orders-grid" id="ordersGrid">
+              <!-- Populated dynamically by counter.js -->
+            </section>
+          </main>
+
+          <!-- ===================================================================
+               VIEW 2: Shop & Site Settings Control Panel (Compact & Clean)
+               =================================================================== -->
+          <main class="canvas-main-view" id="viewSettings" style="display: none;">
+            
+            <p class="settings-lead-sub" data-ci18n="settingsSubtitle">এখানে মূল্য তালিকা, হিরো ব্যানার, কালার থিম ও দোকানের ছবি পরিবর্তন করুন।</p>
+
+            <div class="settings-grid">
+
+              <!-- 1. Price List Configuration -->
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div class="settings-card-icon">💰</div>
+                  <div>
+                    <h3 data-ci18n="cfgPriceTitle">প্রিন্ট ও জেরক্স রেট তালিকা</h3>
+                    <p data-ci18n="cfgPriceDesc">অনলাইন ক্যালকুলেটরে এই রেট কার্যকর হবে।</p>
+                  </div>
+                </div>
+
+                <div class="settings-form-grid">
+                  <div class="form-group">
+                    <label for="priceBwXerox" data-ci18n="lblBwXerox">সাদাকালো জেরক্স / প্রিন্ট (প্রতি পৃষ্ঠা)</label>
+                    <div class="input-prefix">
+                      <span>₹</span>
+                      <input type="number" id="priceBwXerox" min="1" max="100" step="0.5" value="2">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="priceColorPrint" data-ci18n="lblColorPrint">কালার প্রিন্ট (প্রতি পৃষ্ঠা)</label>
+                    <div class="input-prefix">
+                      <span>₹</span>
+                      <input type="number" id="priceColorPrint" min="1" max="200" step="1" value="10">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="pricePhotoPassport" data-ci18n="lblPassportPhoto">পাসপোর্ট ছবি (৮ কপি শিট)</label>
+                    <div class="input-prefix">
+                      <span>₹</span>
+                      <input type="number" id="pricePhotoPassport" min="10" max="500" step="5" value="40">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="priceLamination" data-ci18n="lblLamination">লেমিনেশন (A4 / Legal)</label>
+                    <div class="input-prefix">
+                      <span>₹</span>
+                      <input type="number" id="priceLamination" min="5" max="100" step="5" value="20">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="priceSpiralBinding" data-ci18n="lblSpiral">স্পাইরাল বাইন্ডিং</label>
+                    <div class="input-prefix">
+                      <span>₹</span>
+                      <input type="number" id="priceSpiralBinding" min="10" max="200" step="5" value="35">
+                    </div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="priceRubberStamp" data-ci18n="lblRubberStamp">কাস্টম রবার স্ট্যাম্প</label>
+                    <div class="input-prefix">
+                      <span>₹</span>
+                      <input type="number" id="priceRubberStamp" min="50" max="1000" step="10" value="120">
+                    </div>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 2. Hero Notice Banner -->
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div class="settings-card-icon">📢</div>
+                  <div>
+                    <h3 data-ci18n="cfgBannerTitle">জরুরী হিরো নোটিশ ব্যানার</h3>
+                    <p data-ci18n="cfgBannerDesc">ওয়েবসাইটের শীর্ষে বিশেষ ক্যাম্প/স্কিম প্রচার করুন (যেমন: পিএম কিষাণ)।</p>
+                  </div>
+                </div>
+
+                <div class="toggle-control-row">
+                  <div>
+                    <strong data-ci18n="lblBannerActive">ব্যানার চালু রাখুন (Active)</strong>
+                    <p class="field-sub" data-ci18n="lblBannerActiveSub">চালু থাকলে সাইটের শীর্ষে ভেসে উঠবে।</p>
+                  </div>
+                  <label class="switch-pill">
+                    <input type="checkbox" id="bannerActive">
+                    <span class="switch-slider"></span>
+                  </label>
+                </div>
+
+                <div class="form-group" style="margin-top: 0.75rem;">
+                  <label for="bannerTagBn" data-ci18n="lblBannerTag">ব্যানার ট্যাগ / ব্যাজ (বাংলা)</label>
+                  <input type="text" id="bannerTagBn" placeholder="যেমন: 📢 জরুরী বিজ্ঞপ্তি / 🌾 পিএম কিষাণ">
+                </div>
+
+                <div class="form-group">
+                  <label for="bannerMsgBn" data-ci18n="lblBannerMsg">ঘোষণা বার্তা (বাংলা)</label>
+                  <textarea id="bannerMsgBn" rows="2" placeholder="পিএম কিষাণ সম্মান নিধি এবং কৃষক বন্ধু আবেদন চলছে! শেষ তারিখের আগে দোকানে এসে যোগাযোগ করুন।"></textarea>
+                </div>
+
+                <div class="form-group">
+                  <label for="bannerMsgEn" data-ci18n="lblBannerMsgEn">ঘোষণা বার্তা (English — ঐচ্ছিক)</label>
+                  <textarea id="bannerMsgEn" rows="2" placeholder="PM-Kisan & Krishak Bandhu registration is open! Visit shop before deadline."></textarea>
+                </div>
+
+                <div class="form-grid-2">
+                  <div class="form-group">
+                    <label for="bannerActionLabel" data-ci18n="lblBannerBtn">বোতামের লেখা</label>
+                    <input type="text" id="bannerActionLabel" placeholder="কাগজপত্র দেখুন">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="bannerActionUrl" data-ci18n="lblBannerUrl">ক্লিক করলে যাবে</label>
+                    <select id="bannerActionUrl">
+                      <option value="#documents">ডকুমেন্ট চেকলিস্ট (#documents)</option>
+                      <option value="#calculator">প্রিন্ট ক্যালকুলেটর (#calculator)</option>
+                      <option value="#services">সকল সার্ভিস তালিকা (#services)</option>
+                      <option value="https://wa.me/919734573323?text=PM%20Kisan%20Help">সরাসরি হোয়াটসঅ্যাপ</option>
+                    </select>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 3. Predefined Color Themes -->
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div class="settings-card-icon">🎨</div>
+                  <div>
+                    <h3 data-ci18n="cfgThemeTitle">ওয়েবসাইটের কালার থিম</h3>
+                    <p data-ci18n="cfgThemeDesc">ওয়েবসাইটের মূল ভিজ্যুয়াল থিম সিলেক্ট করুন।</p>
+                  </div>
+                </div>
+
+                <div class="theme-options-grid">
+                  <div class="theme-select-card" data-theme-val="ocean-emerald">
+                    <div class="theme-swatch-bar">
+                      <span style="background: #090d16;"></span>
+                      <span style="background: #0284c7;"></span>
+                      <span style="background: #10b981;"></span>
+                    </div>
+                    <div class="theme-card-info">
+                      <h4>🌊 Ocean Emerald</h4>
+                      <p>Navy, Cyan ও Emerald</p>
+                    </div>
+                    <span class="theme-radio-check">✓</span>
+                  </div>
+
+                  <div class="theme-select-card" data-theme-val="bengal-gold">
+                    <div class="theme-swatch-bar">
+                      <span style="background: #0f172a;"></span>
+                      <span style="background: #f59e0b;"></span>
+                      <span style="background: #eab308;"></span>
+                    </div>
+                    <div class="theme-card-info">
+                      <h4>👑 Bengal Gold</h4>
+                      <p>Slate ও গোল্ডেন অ্যাম্বার</p>
+                    </div>
+                    <span class="theme-radio-check">✓</span>
+                  </div>
+
+                  <div class="theme-select-card" data-theme-val="krishi-green">
+                    <div class="theme-swatch-bar">
+                      <span style="background: #064e3b;"></span>
+                      <span style="background: #10b981;"></span>
+                      <span style="background: #34d399;"></span>
+                    </div>
+                    <div class="theme-card-info">
+                      <h4>🌿 Krishi Green</h4>
+                      <p>কৃষি ফার্ম ও গ্রামীণ সবুজ</p>
+                    </div>
+                    <span class="theme-radio-check">✓</span>
+                  </div>
+
+                  <div class="theme-select-card" data-theme-val="crimson-ruby">
+                    <div class="theme-swatch-bar">
+                      <span style="background: #18181b;"></span>
+                      <span style="background: #f43f5e;"></span>
+                      <span style="background: #fb7185;"></span>
+                    </div>
+                    <div class="theme-card-info">
+                      <h4>🔴 Crimson Ruby</h4>
+                      <p>ডার্ক ও রুবি রেড</p>
+                    </div>
+                    <span class="theme-radio-check">✓</span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 4. Storefront Photo Upload -->
+              <section class="settings-card">
+                <div class="settings-card-head">
+                  <div class="settings-card-icon">📸</div>
+                  <div>
+                    <h3 data-ci18n="cfgPhotoTitle">দোকানের প্রধান ছবি</h3>
+                    <p data-ci18n="cfgPhotoDesc">দোকানের আসল ছবিটি এখান থেকে আপডেট করুন।</p>
+                  </div>
+                </div>
+
+                <div class="photo-upload-container">
+                  <div class="photo-preview-box">
+                    <img id="storefrontImgPreview" src="assets/shop-front.jpeg" alt="দোকানের ছবি">
+                    <span class="photo-badge">বর্তমান ছবি</span>
+                  </div>
+
+                  <div class="photo-upload-actions">
+                    <p class="field-sub">দিনের আলোয় তোলা ল্যান্ডস্কেপ ছবি (JPG, PNG, WebP — সর্বোচ্চ 10MB)।</p>
+                    <div class="photo-btn-row">
+                      <label class="c-btn btn-file-picker">
+                        📁 ছবি বাছুন
+                        <input type="file" id="storefrontFileInput" accept="image/jpeg,image/png,image/webp" style="display: none;">
+                      </label>
+                      <button type="button" class="c-btn btn-primary" id="btnUploadStorefrontPhoto" disabled>
+                        ⬆️ আপলোড
+                      </button>
+                    </div>
+                    <span id="photoUploadFeedback" class="upload-feedback"></span>
+                  </div>
+                </div>
+              </section>
+
+              <!-- 5. Shop Key Contact & Timings -->
+              <section class="settings-card" style="grid-column: 1 / -1;">
+                <div class="settings-card-head">
+                  <div class="settings-card-icon">📞</div>
+                  <div>
+                    <h3 data-ci18n="cfgContactTitle">দোকানের যোগাযোগ ও সময়সূচী</h3>
+                    <p data-ci18n="cfgContactDesc">ফোন, হোয়াটসঅ্যাপ বা খোলার সময় আপডেট করুন।</p>
+                  </div>
+                </div>
+
+                <div class="settings-form-grid" style="grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));">
+                  <div class="form-group">
+                    <label for="contactPhone" data-ci18n="lblPhone">প্রাথমিক ফোন নম্বর</label>
+                    <input type="text" id="contactPhone" value="9734573323">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactWhatsapp" data-ci18n="lblWhatsapp">হোয়াটসঅ্যাপ নম্বর</label>
+                    <input type="text" id="contactWhatsapp" value="9734573323">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactEmail" data-ci18n="lblEmail">অফিসিয়াল ইমেইল</label>
+                    <input type="email" id="contactEmail" value="allinternetpuncha@gmail.com">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactHoursBn" data-ci18n="lblHours">দোকান খোলার সময় (বাংলা)</label>
+                    <input type="text" id="contactHoursBn" value="সোম – রবি: সকাল ৮:০০ টা – রাত ৯:০০ টা">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="contactLandmarkBn" data-ci18n="lblLandmark">ঠিকানা ও ল্যান্ডমার্ক</label>
+                    <input type="text" id="contactLandmarkBn" value="কৃষি ফার্মের বিপরীতে, পুঞ্চা, পুরুলিয়া">
+                  </div>
+                </div>
+              </section>
+
+            </div>
+
+          </main>
         </div>
-      </div>
-
-      <div class="metric-card metric-revenue">
-        <div class="metric-icon-box">💰</div>
-        <div class="metric-data">
-          <h3 id="statRevenue">₹0</h3>
-          <p data-ci18n="statRevenueLbl">আজকের আনুমানিক আয়</p>
-        </div>
-      </div>
-    </section>
-
-    <!-- Orders Queue & Tabs -->
-    <div class="queue-toolbar">
-      <div class="status-tabs">
-        <button type="button" class="tab-btn active" data-status="all">
-          <span data-ci18n="tabAll">সকল অর্ডার</span>
-          <span class="tab-badge" id="badgeAll">0</span>
-        </button>
-        <button type="button" class="tab-btn" data-status="pending">
-          <span data-ci18n="tabPending">অপেক্ষমান</span>
-          <span class="tab-badge" id="badgePending">0</span>
-        </button>
-        <button type="button" class="tab-btn" data-status="ready">
-          <span data-ci18n="tabReady">প্রিন্ট রেডি</span>
-          <span class="tab-badge" id="badgeReady">0</span>
-        </button>
-        <button type="button" class="tab-btn" data-status="completed">
-          <span data-ci18n="tabCompleted">সম্পন্ন</span>
-        </button>
       </div>
     </div>
+  </div>
 
-    <!-- Live Orders Grid -->
-    <section class="orders-grid" id="ordersGrid">
-      <!-- Populated dynamically by counter.js -->
-    </section>
-  </main>
+  <!-- Toast Notification -->
+  <div class="toast-notification" id="toastNotification" role="alert"></div>
 
   <script src="js/theme.js"></script>
-  <script src="js/counter.js"></script>
+  <script src="js/counter.js?v=3"></script>
 </body>
 </html>
