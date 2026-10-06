@@ -503,6 +503,9 @@ const server = http.createServer((req, res) => {
         if (updateData.status) {
           db.orders[orderIdx].status = updateData.status;
         }
+        if (updateData.cancelReason !== undefined) {
+          db.orders[orderIdx].cancelReason = updateData.cancelReason;
+        }
         if (updateData.paymentStatus) {
           db.orders[orderIdx].paymentStatus = updateData.paymentStatus;
         }
@@ -540,7 +543,11 @@ const server = http.createServer((req, res) => {
       inProgressCount: db.orders.filter(o => o.status === 'in_progress').length,
       readyCount: db.orders.filter(o => o.status === 'ready').length,
       completedCount: db.orders.filter(o => o.status === 'completed').length,
-      todayRevenue: todayOrders.reduce((sum, o) => sum + (o.totalAmount || 0), 0)
+      cancelledCount: db.orders.filter(o => o.status === 'cancelled').length,
+      todayRevenue: todayOrders.reduce((sum, o) => sum + (o.totalAmount || 0), 0),
+      todayUpi: todayOrders.filter(o => o.paymentStatus === 'paid_online' || o.paymentMethod === 'upi').reduce((sum, o) => sum + (o.totalAmount || 0), 0),
+      todayCash: todayOrders.filter(o => o.paymentStatus === 'paid_cash').reduce((sum, o) => sum + (o.totalAmount || 0), 0),
+      todayDue: todayOrders.filter(o => o.paymentStatus === 'pending_at_counter').reduce((sum, o) => sum + (o.totalAmount || 0), 0)
     };
 
     res.writeHead(200, { 'Content-Type': 'application/json' });

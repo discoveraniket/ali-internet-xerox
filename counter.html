@@ -168,13 +168,21 @@
                VIEW 1: Live Orders Queue Hub
                =================================================================== -->
           <main class="canvas-main-view" id="viewOrders">
-            <!-- Metrics Ribbon (Compact) -->
+            <!-- Metrics Ribbon (Enhanced Cashier Bar) -->
             <section class="metrics-grid">
               <div class="metric-card metric-pending">
                 <div class="metric-icon-box">⏳</div>
                 <div class="metric-data">
                   <h3 id="statPending">0</h3>
                   <p data-ci18n="statPendingLbl">অপেক্ষমান অর্ডার</p>
+                </div>
+              </div>
+
+              <div class="metric-card metric-progress">
+                <div class="metric-icon-box">⚙️</div>
+                <div class="metric-data">
+                  <h3 id="statInProgress">0</h3>
+                  <p data-ci18n="statInProgressLbl">কাজ চলছে</p>
                 </div>
               </div>
 
@@ -186,41 +194,80 @@
                 </div>
               </div>
 
-              <div class="metric-card metric-total">
-                <div class="metric-icon-box">📄</div>
-                <div class="metric-data">
-                  <h3 id="statToday">0</h3>
-                  <p data-ci18n="statTodayLbl">আজকের মোট অর্ডার</p>
-                </div>
-              </div>
-
-              <div class="metric-card metric-revenue">
+              <div class="metric-card metric-revenue" id="metricCardRevenue" title="ক্লিক করে ক্যাশ রিকনসিলিয়েশন দেখুন">
                 <div class="metric-icon-box">💰</div>
                 <div class="metric-data">
                   <h3 id="statRevenue">₹0</h3>
-                  <p data-ci18n="statRevenueLbl">আজকের আনুমানিক আয়</p>
+                  <p data-ci18n="statRevenueLbl">আজকের বুকিং আয়</p>
+                  <div class="revenue-micro-tags">
+                    <span class="micro-tag tag-upi" id="statSubUpi">📱 UPI: ₹0</span>
+                    <span class="micro-tag tag-cash" id="statSubCash">💵 ক্যাশ: ₹0</span>
+                    <span class="micro-tag tag-due" id="statSubDue">⚠️ বাকি: ₹0</span>
+                  </div>
                 </div>
               </div>
             </section>
 
-            <!-- Orders Queue & Tabs (Compact) -->
+            <!-- Orders Queue & Controls Ribbon -->
             <div class="queue-toolbar">
-              <div class="status-tabs">
-                <button type="button" class="tab-btn active" data-status="all">
-                  <span data-ci18n="tabAll">সকল অর্ডার</span>
-                  <span class="tab-badge" id="badgeAll">0</span>
-                </button>
-                <button type="button" class="tab-btn" data-status="pending">
-                  <span data-ci18n="tabPending">অপেক্ষমান</span>
-                  <span class="tab-badge" id="badgePending">0</span>
-                </button>
-                <button type="button" class="tab-btn" data-status="ready">
-                  <span data-ci18n="tabReady">প্রিন্ট রেডি</span>
-                  <span class="tab-badge" id="badgeReady">0</span>
-                </button>
-                <button type="button" class="tab-btn" data-status="completed">
-                  <span data-ci18n="tabCompleted">সম্পন্ন</span>
-                </button>
+              <!-- Live Search Bar -->
+              <div class="queue-search-row">
+                <div class="queue-search-box">
+                  <span class="search-icon">🔍</span>
+                  <input type="text" id="queueSearchInput" placeholder="টোকেন (#P-XXX), গ্রাহকের নাম বা মোবাইল নম্বর দিয়ে খুঁজুন..." aria-label="Search orders">
+                  <button type="button" id="clearSearchBtn" class="clear-search-btn" title="মুছে ফেলুন" style="display: none;">✕</button>
+                </div>
+
+                <div class="queue-actions-cluster">
+                  <!-- Payment Filter -->
+                  <select id="paymentFilterSelect" class="queue-select" aria-label="Filter by payment">
+                    <option value="all">💳 সকল পেমেন্ট</option>
+                    <option value="paid_online">📱 UPI প্রাপ্ত</option>
+                    <option value="paid_cash">💵 নগদ প্রাপ্ত</option>
+                    <option value="pending_at_counter">⚠️ নগদ বাকি (Cash Due)</option>
+                  </select>
+
+                  <!-- FIFO / LIFO Sorting -->
+                  <select id="queueSortSelect" class="queue-select" aria-label="Sort queue">
+                    <option value="fifo">⏰ পুরনো আগে (FIFO)</option>
+                    <option value="lifo">⚡ নতুন আগে (LIFO)</option>
+                  </select>
+
+                  <!-- Daily Cash Summary Modal Opener -->
+                  <button type="button" class="c-btn btn-secondary queue-eod-btn" id="btnOpenEodModal" title="আজকের ক্যাশ ড্রয়ার ও রিকনসিলিয়েশন">
+                    📊 <span data-ci18n="btnCashSummary">ক্যাশ হিসাব ও CSV</span>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Status Filter Tabs -->
+              <div class="status-tabs-scroll">
+                <div class="status-tabs">
+                  <button type="button" class="tab-btn active" data-status="all">
+                    <span data-ci18n="tabAll">সকল অর্ডার</span>
+                    <span class="tab-badge" id="badgeAll">0</span>
+                  </button>
+                  <button type="button" class="tab-btn" data-status="pending">
+                    <span data-ci18n="tabPending">অপেক্ষমান</span>
+                    <span class="tab-badge" id="badgePending">0</span>
+                  </button>
+                  <button type="button" class="tab-btn" data-status="in_progress">
+                    <span data-ci18n="tabInProgress">কাজ চলছে</span>
+                    <span class="tab-badge" id="badgeInProgress">0</span>
+                  </button>
+                  <button type="button" class="tab-btn" data-status="ready">
+                    <span data-ci18n="tabReady">প্রিন্ট রেডি</span>
+                    <span class="tab-badge" id="badgeReady">0</span>
+                  </button>
+                  <button type="button" class="tab-btn" data-status="completed">
+                    <span data-ci18n="tabCompleted">সম্পন্ন</span>
+                    <span class="tab-badge" id="badgeCompleted">0</span>
+                  </button>
+                  <button type="button" class="tab-btn" data-status="cancelled">
+                    <span data-ci18n="tabCancelled">বাতিল</span>
+                    <span class="tab-badge" id="badgeCancelled">0</span>
+                  </button>
+                </div>
               </div>
             </div>
 
@@ -497,10 +544,233 @@
     </div>
   </div>
 
+  <!-- ===================================================================
+       MODAL 1: In-Modal Document Preview & 1-Click Direct Print
+       =================================================================== -->
+  <div class="counter-modal-backdrop" id="docPreviewModal" style="display: none;" role="dialog" aria-modal="true" aria-labelledby="previewModalCustomer">
+    <div class="counter-modal modal-lg">
+      <div class="counter-modal-head">
+        <div class="modal-head-meta">
+          <div class="modal-head-row1">
+            <span class="modal-badge-token" id="previewModalToken">#P-000</span>
+            <h3 id="previewModalCustomer">গ্রাহক নথি</h3>
+            <button type="button" class="modal-mobile-close-btn" id="btnMobileClosePreviewModal" aria-label="Close modal">✕</button>
+          </div>
+          <div class="modal-specs-pill-bar" id="previewModalSpecs">লোডিং স্পেসিফিকেশন...</div>
+        </div>
+        <div class="modal-head-actions">
+          <button type="button" class="c-btn btn-primary modal-action-btn" id="btnModalDirectPrint" title="১-ক্লিক প্রিন্ট করুন">
+            🖨️ <span data-ci18n="modalPrintBtn">প্রিন্ট করুন</span>
+          </button>
+          <a href="#" download id="btnModalDownloadFile" class="c-btn btn-secondary modal-action-btn" title="ফাইল ডাউনলোড করুন">
+            ⬇️ <span data-ci18n="modalDownloadBtn">ডাউনলোড</span>
+          </a>
+          <button type="button" class="c-btn icon-only modal-close-btn" id="btnClosePreviewModal" aria-label="Close modal">✕</button>
+        </div>
+      </div>
+
+      <div class="counter-modal-body modal-preview-body">
+        <div class="doc-viewer-container" id="docViewerContainer">
+          <iframe id="docPdfIframe" class="doc-preview-iframe" title="PDF Document Preview" style="display: none;"></iframe>
+          <div class="doc-img-wrapper" id="docImgWrapper" style="display: none;">
+            <img id="docImgPreview" class="doc-preview-image" alt="Customer Document Preview">
+          </div>
+          <div id="docFallbackView" class="doc-fallback-view" style="display: none;">
+            <span class="fallback-icon">📄</span>
+            <p id="docFallbackFileName">document.ext</p>
+            <p class="field-sub">সরাসরি ব্রাউজারে প্রিভিউ পাওয়া যাচ্ছে না। ডাউনলোড বাটনে ক্লিক করে ফাইলটি ওপেন করুন।</p>
+          </div>
+          <div id="docLoadingSpinner" class="doc-loading-spinner">
+            <span class="spinner-ring"></span>
+            <span>নথি লোড হচ্ছে...</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="counter-modal-footer">
+        <div class="modal-status-flow">
+          <span class="flow-label">স্ট্যাটাস:</span>
+          <button type="button" class="btn-step-status" data-set-status="in_progress" id="modalBtnInProgress">
+            ⚙️ কাজ শুরু
+          </button>
+          <button type="button" class="btn-step-status" data-set-status="ready" id="modalBtnReady">
+            🟢 প্রিন্ট রেডি
+          </button>
+          <button type="button" class="btn-step-status" data-set-status="completed" id="modalBtnCompleted">
+            ✅ ডেলিভার্ড
+          </button>
+          <button type="button" class="btn-step-status btn-danger-soft" id="modalBtnCancel">
+            ❌ বাতিল
+          </button>
+        </div>
+        <div class="modal-footer-extra">
+          <button type="button" class="c-btn btn-wa-pill" id="modalBtnWhatsApp">
+            💬 হোয়াটসঅ্যাপ বার্তা
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL 2: WhatsApp Multi-Template Presets Sender
+       =================================================================== -->
+  <div class="counter-modal-backdrop" id="whatsappModal" style="display: none;" role="dialog" aria-modal="true">
+    <div class="counter-modal modal-md">
+      <div class="counter-modal-head">
+        <div class="modal-head-title">
+          <span class="modal-icon-wa">💬</span>
+          <div>
+            <h3>হোয়াটসঅ্যাপ বার্তা পাঠান</h3>
+            <p class="modal-head-sub" id="waModalTarget">গ্রাহক: নাম (নম্বর)</p>
+          </div>
+        </div>
+        <button type="button" class="c-btn icon-only modal-close-btn" id="btnCloseWaModal" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="counter-modal-body">
+        <p class="field-sub" style="margin-bottom: 12px;">নিচের যেকোনো রেডি টেমপ্লেটে ক্লিক করুন — মেসেজটি স্বয়ংক্রিয়ভাবে তৈরি হবে:</p>
+        
+        <div class="wa-templates-list">
+          <button type="button" class="wa-template-card" data-template="ready">
+            <div class="wa-t-tag">🟢 ১. প্রিন্ট রেডি (Ready for pickup)</div>
+            <p class="wa-t-msg" id="waPreviewReady">নমস্কার! আলি ইন্টারনেট থেকে জানানো হচ্ছে আপনার প্রিন্ট/জেরক্স তৈরি হয়ে গেছে। দোকানে এসে নিয়ে যান।</p>
+          </button>
+
+          <button type="button" class="wa-template-card" data-template="in_progress">
+            <div class="wa-t-tag">⚙️ ২. কাজ শুরু হয়েছে (Printing started)</div>
+            <p class="wa-t-msg" id="waPreviewInProgress">নমস্কার, আপনার অর্ডারটির প্রিন্ট/জেরক্স কাজ শুরু হয়েছে। কিছুক্ষণের মধ্যে তৈরি হয়ে যাবে।</p>
+          </button>
+
+          <button type="button" class="wa-template-card" data-template="unclear_file">
+            <div class="wa-t-tag">⚠️ ৩. ফাইল অস্পষ্ট / খোলা যাচ্ছে না</div>
+            <p class="wa-t-msg" id="waPreviewUnclear">নমস্কার, আপনার পাঠানো ফাইলটি অস্পষ্ট/খুলছে না। দয়া করে পরিষ্কার ফাইল বা ফটো হোয়াটসঅ্যাপে আবার পাঠান।</p>
+          </button>
+
+          <button type="button" class="wa-template-card" data-template="cash_due">
+            <div class="wa-t-tag">💰 ৪. বিল / পেমেন্ট বাকি আছে</div>
+            <p class="wa-t-msg" id="waPreviewDue">নমস্কার, আলি ইন্টারনেট থেকে আপনার অর্ডারের বিল পেমেন্ট বাকি আছে। দোকানে এসে ক্যাশ দিন বা ইউপিআই করুন।</p>
+          </button>
+        </div>
+
+        <div class="form-group" style="margin-top: 14px;">
+          <label for="waCustomMessage">নির্বাচিত বা নিজস্ব বার্তা:</label>
+          <textarea id="waCustomMessage" rows="3" class="wa-custom-textarea" placeholder="এখানে মেসেজ লিখুন বা উপরের টেমপ্লেট ক্লিক করুন..."></textarea>
+        </div>
+      </div>
+
+      <div class="counter-modal-footer">
+        <button type="button" class="c-btn btn-secondary" id="btnCancelWaModal">বন্ধ করুন</button>
+        <button type="button" class="c-btn btn-primary btn-wa-send" id="btnSendCustomWa">
+          🚀 হোয়াটসঅ্যাপে পাঠান
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL 3: Cash Drawer & End-of-Day Reconciliation + CSV Export
+       =================================================================== -->
+  <div class="counter-modal-backdrop" id="eodSummaryModal" style="display: none;" role="dialog" aria-modal="true">
+    <div class="counter-modal modal-md">
+      <div class="counter-modal-head">
+        <div class="modal-head-title">
+          <span class="modal-icon-cash">📊</span>
+          <div>
+            <h3>আজকের ক্যাশ ড্রয়ার ও রিকনসিলিয়েশন</h3>
+            <p class="modal-head-sub" id="eodDateSubtitle">তারিখ: আজকের হিসাব</p>
+          </div>
+        </div>
+        <button type="button" class="c-btn icon-only modal-close-btn" id="btnCloseEodModal" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="counter-modal-body">
+        <div class="eod-stats-grid">
+          <div class="eod-stat-box eod-total">
+            <span class="eod-stat-label">মোট অর্ডার</span>
+            <h3 id="eodTotalOrders">0</h3>
+          </div>
+          <div class="eod-stat-box eod-revenue">
+            <span class="eod-stat-label">মোট বুকিং আয়</span>
+            <h3 id="eodTotalRevenue">₹0</h3>
+          </div>
+          <div class="eod-stat-box eod-upi">
+            <span class="eod-stat-label">📱 অনলাইন UPI</span>
+            <h3 id="eodUpiCollected">₹0</h3>
+          </div>
+          <div class="eod-stat-box eod-cash">
+            <span class="eod-stat-label">💵 ক্যাশ আদায়</span>
+            <h3 id="eodCashCollected">₹0</h3>
+          </div>
+          <div class="eod-stat-box eod-due">
+            <span class="eod-stat-label">⚠️ নগদ বাকি</span>
+            <h3 id="eodDueAmount">₹0</h3>
+          </div>
+        </div>
+
+        <div class="eod-breakdown-section">
+          <h4>সার্ভিস ভিত্তিক বিভাজন (আজকের কাজ)</h4>
+          <div id="eodServiceBreakdown" class="service-breakdown-list">
+            <!-- Dynamically populated -->
+          </div>
+        </div>
+      </div>
+
+      <div class="counter-modal-footer">
+        <button type="button" class="c-btn btn-secondary" id="btnCloseEodFooter">বন্ধ করুন</button>
+        <button type="button" class="c-btn btn-primary" id="btnExportCsv">
+          📥 CSV রিপোর্ট ডাউনলোড (Excel)
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- ===================================================================
+       MODAL 4: Order Cancellation Reason Modal
+       =================================================================== -->
+  <div class="counter-modal-backdrop" id="cancelReasonModal" style="display: none;" role="dialog" aria-modal="true">
+    <div class="counter-modal modal-sm">
+      <div class="counter-modal-head">
+        <div class="modal-head-title">
+          <span>❌</span>
+          <div>
+            <h3>অর্ডার বাতিল নিশ্চিতকরণ</h3>
+            <p class="modal-head-sub" id="cancelModalOrderRef">টোকেন: #P-000</p>
+          </div>
+        </div>
+        <button type="button" class="c-btn icon-only modal-close-btn" id="btnCloseCancelModal" aria-label="Close modal">✕</button>
+      </div>
+
+      <div class="counter-modal-body">
+        <p>আপনি কি নিশ্চিত যে এই প্রিন্ট অর্ডারটি বাতিল করতে চান?</p>
+        <div class="form-group" style="margin-top: 12px;">
+          <label for="cancelReasonSelect">বাতিলের কারণ বাছুন:</label>
+          <select id="cancelReasonSelect" class="queue-select" style="width: 100%;">
+            <option value="ফাইল অস্পষ্ট বা ক্ষতিগ্রস্ত">ফাইল অস্পষ্ট বা ক্ষতিগ্রস্ত (Corrupted / Unclear)</option>
+            <option value="গ্রাহক নিজে বাতিল করেছেন">গ্রাহক নিজে বাতিল করেছেন (Customer Requested)</option>
+            <option value="ডুপ্লিকেট বা ভুল অর্ডার">ডুপ্লিকেট বা ভুল অর্ডার (Duplicate Order)</option>
+            <option value="কাগজ বা কালির সমস্যা">কাগজ বা স্টকের সমস্যা (Out of Stock / Toner)</option>
+            <option value="অন্যান্য কারণ">অন্যান্য কারণ (Other)</option>
+          </select>
+        </div>
+      </div>
+
+      <div class="counter-modal-footer">
+        <button type="button" class="c-btn btn-secondary" id="btnDismissCancelModal">ফিরে যান</button>
+        <button type="button" class="c-btn btn-danger" id="btnConfirmCancel">
+          ❌ হ্যাঁ, বাতিল করুন
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Invisible Print Frame for 1-Click Direct Print -->
+  <iframe id="silentPrintIframe" style="position: absolute; width: 0; height: 0; border: 0; visibility: hidden;" title="Silent Print Frame"></iframe>
+
   <!-- Toast Notification -->
   <div class="toast-notification" id="toastNotification" role="alert"></div>
 
   <script src="js/theme.js"></script>
-  <script src="js/counter.js?v=3"></script>
+  <script src="js/counter.js?v=4"></script>
 </body>
 </html>
